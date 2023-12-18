@@ -1,12 +1,52 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 const Intro = () => {
+    const introText = '호기심 많은 프론트엔드 개발자';
+    const nameText = '조진형';
+    const endingText = '입니다.';
+    const [intro, setIntro] = useState<string>('');
+    const [name, setName] = useState<string>('');
+    const [ending, setEnding] = useState<string>('');
+    const [count, setCount] = useState<number>(0);
+
+    useEffect(() => {
+        // intro 부분 타이핑 속도
+        const introInterval = setInterval(() => {
+            if (count < introText.length) {
+                setIntro((prevIntro) => prevIntro + introText[count]);
+                setCount((prevCount) => prevCount + 1);
+            }
+        }, 70);
+
+        // name,ending 부분 타이핑 속도
+        const nameEndingInterval = setInterval(() => {
+            const nameStartIndex = introText.length + 1;
+            const nameEndIndex = nameStartIndex + nameText.length;
+
+            if (count >= nameStartIndex && count < nameEndIndex) {
+                setName((prevName) => prevName + nameText[count - nameStartIndex]);
+            } else if (count >= nameEndIndex && count < nameEndIndex + endingText.length) {
+                setEnding((prevEnding) => prevEnding + endingText[count - nameEndIndex]);
+            }
+
+            setCount((prevCount) => prevCount + 1);
+        }, 150);
+
+        // 다 실행되고 난 후 interval 삭제
+        return () => {
+            clearInterval(introInterval);
+            clearInterval(nameEndingInterval);
+        };
+    }, [count, introText, nameText, endingText]);
+
     return (
         <>
             <_introBox>
                 <_mainIntro className="mainIntro">
-                    호기심 많은 프론트엔드 개발자
-                    <br />
-                    <span>조진형</span>입니다.
+                    {intro} <br />
+                    <span>{name}</span>
+                    {ending}
+                    <_cursor className="cursor"></_cursor>
                 </_mainIntro>
                 <_subIntro className="subIntro">
                     새로운 기술을 사용하는데 재미를 느끼고,
@@ -105,6 +145,21 @@ const _mainIntro = styled.p`
         background-size: 100% 100%;
         background-image: linear-gradient(transparent 70%, #fc7a7a 30%);
     }
+`;
+
+const _cursor = styled.div`
+    /* position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1em;
+    width: 0.5em;
+    background-color: #000;
+    animation: blink 0.7s infinite;
+    @keyframes blink {
+        50% {
+            opacity: 0;
+        }
+    } */
 `;
 
 const _subIntro = styled.p`
