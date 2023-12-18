@@ -3,7 +3,7 @@ import NavBtn from '../atoms/Button/NavBtn';
 import { useState } from 'react';
 
 const Menu = () => {
-    const [activeButton, setActiveButton] = useState<string | null>(null);
+    const [activeButton, setActiveButton] = useState<string>('About');
 
     // Nav버튼 클릭시 해당 버튼만 동작
     const onClickStyle = (buttonName: string) => {

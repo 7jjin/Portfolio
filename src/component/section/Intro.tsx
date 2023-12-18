@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 const Intro = () => {
     const introText = '호기심 많은 프론트엔드 개발자';
@@ -8,6 +8,7 @@ const Intro = () => {
     const [name, setName] = useState<string>('');
     const [ending, setEnding] = useState<string>('');
     const [count, setCount] = useState<number>(0);
+    const subIntro = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         // intro 부분 타이핑 속도
@@ -31,11 +32,15 @@ const Intro = () => {
 
             setCount((prevCount) => prevCount + 1);
         }, 150);
-
         // 다 실행되고 난 후 interval 삭제
+
         return () => {
             clearInterval(introInterval);
             clearInterval(nameEndingInterval);
+            if (count >= introText.length + nameText.length + endingText.length && subIntro.current) {
+                // 타이핑 완료 후 로직
+                subIntro.current.style.animation = 'text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both';
+            }
         };
     }, [count, introText, nameText, endingText]);
 
@@ -46,9 +51,8 @@ const Intro = () => {
                     {intro} <br />
                     <span>{name}</span>
                     {ending}
-                    <_cursor className="cursor"></_cursor>
                 </_mainIntro>
-                <_subIntro className="subIntro">
+                <_subIntro className="subIntro" ref={subIntro}>
                     새로운 기술을 사용하는데 재미를 느끼고,
                     <br />더 나은 사용자 경험에 대해 항상 생각합니다.
                 </_subIntro>
@@ -147,27 +151,29 @@ const _mainIntro = styled.p`
     }
 `;
 
-const _cursor = styled.div`
-    /* position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 1em;
-    width: 0.5em;
-    background-color: #000;
-    animation: blink 0.7s infinite;
-    @keyframes blink {
-        50% {
-            opacity: 0;
-        }
-    } */
-`;
-
 const _subIntro = styled.p`
     font-size: 30px;
     margin: 40px 0px;
     text-align: center;
     line-height: 1.25;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    animation: none;
+    visibility: hidden;
+    @keyframes text-focus-in {
+        0% {
+            visibility: hidden;
+            -webkit-filter: blur(12px);
+            filter: blur(12px);
+            opacity: 0;
+        }
+        100% {
+            visibility: visible;
+
+            -webkit-filter: blur(0px);
+            filter: blur(0px);
+            opacity: 1;
+        }
+    }
 `;
 
 const _slideBox = styled.div`
@@ -176,6 +182,7 @@ const _slideBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+
     & > span,
     svg {
         color: rgba(0, 0, 0, 0.25);
