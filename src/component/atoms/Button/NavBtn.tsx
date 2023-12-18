@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 interface NavBtnStyle {
     color: string;
+    active: boolean;
 }
 interface NavBtnProps extends NavBtnStyle {
     children: React.ReactNode;
@@ -10,10 +11,10 @@ interface NavBtnProps extends NavBtnStyle {
     onClick: () => void;
 }
 
-const NavBtn = ({ className, children, ...rest }: NavBtnProps): ReactElement => {
+const NavBtn = ({ className, children, active, ...rest }: NavBtnProps): ReactElement => {
     return (
         <>
-            <_styledBtn className={className} {...rest}>
+            <_styledBtn className={className} active={active} {...rest}>
                 <p>{children}</p>
             </_styledBtn>
         </>
@@ -22,7 +23,7 @@ const NavBtn = ({ className, children, ...rest }: NavBtnProps): ReactElement => 
 
 const _styledBtn = styled.button<NavBtnStyle>`
     position: relative;
-    right: -13px;
+    right: ${(props) => (props.active ? '0px' : '-13px')};
     display: flex;
     text-align: center;
     align-items: center;
