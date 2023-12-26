@@ -1,12 +1,10 @@
 import Intro from '../component/section/Intro';
-import Menu from '../component/section/Menu';
 import styled from 'styled-components';
 
 const IntroPage = () => {
     return (
         <>
             <_Wrapper>
-                <Menu />
                 <Intro />
             </_Wrapper>
         </>

@@ -59,6 +59,8 @@ const Menu = () => {
 };
 
 const _Menu = styled.section`
+    height: 100%;
+    position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;

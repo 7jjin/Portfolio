@@ -9,6 +9,7 @@ const Intro = () => {
     const [ending, setEnding] = useState<string>('');
     const [count, setCount] = useState<number>(0);
     const subIntro = useRef<HTMLDivElement>(null);
+    const slidbox = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         // intro 부분 타이핑 속도
@@ -37,16 +38,21 @@ const Intro = () => {
         return () => {
             clearInterval(introInterval);
             clearInterval(nameEndingInterval);
-            if (count >= introText.length + nameText.length + endingText.length && subIntro.current) {
+            if (
+                count >= introText.length + nameText.length + endingText.length &&
+                subIntro.current &&
+                slidbox.current
+            ) {
                 // 타이핑 완료 후 로직
                 subIntro.current.style.animation = 'text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both';
+                slidbox.current.style.animation = 'blink 1s ease-in-out infinite alternate';
             }
         };
     }, [count, introText, nameText, endingText]);
 
     return (
         <>
-            <_introBox>
+            <_introBox id="intro">
                 <_mainIntro className="mainIntro">
                     {intro} <br />
                     <span>{name}</span>
@@ -56,7 +62,7 @@ const Intro = () => {
                     새로운 기술을 사용하는데 재미를 느끼고,
                     <br />더 나은 사용자 경험에 대해 항상 생각합니다.
                 </_subIntro>
-                <_slideBox className="slidebox">
+                <_slideBox className="slidebox" ref={slidbox}>
                     <span>좌우 스크롤입니다.</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="540" height="16" viewBox="0 0 540 16" fill="none">
                         <path
@@ -128,6 +134,7 @@ const Intro = () => {
 
 const _introBox = styled.section`
     position: relative;
+    left: 10%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -182,10 +189,22 @@ const _slideBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    animation: none;
+    visibility: hidden;
     & > span,
     svg {
         color: rgba(0, 0, 0, 0.25);
+    }
+
+    @keyframes blink {
+        0% {
+            visibility: hidden;
+            opacity: 0;
+        }
+        100% {
+            visibility: visible;
+            opacity: 1;
+        }
     }
 `;
 
