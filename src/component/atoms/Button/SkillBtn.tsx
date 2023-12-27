@@ -8,7 +8,7 @@ interface SkillBtnStyle {
 interface SkillBtnProps extends SkillBtnStyle {
     children: ReactNode;
     className: string;
-    onClick: () => void;
+    onClick?: () => void;
 }
 
 const SkillBtn = ({ className, children, ...rest }: SkillBtnProps): ReactElement => {
@@ -21,6 +21,7 @@ const SkillBtn = ({ className, children, ...rest }: SkillBtnProps): ReactElement
     );
 };
 const _styledBtn = styled.button<SkillBtnStyle>`
+    position: relative;
     width: 50px;
     height: 50px;
     border-radius: 50%;
