@@ -57,6 +57,24 @@ export const BACKEND: SkillItem[] = [
         value: 10,
         content: 'Express로 서버를 구축해 봤어요.',
     },
+    {
+        stack: 'backend',
+        name: 'Socket.io',
+        value: 10,
+        content: 'Socket.io로 실시간 통신을 구현해봤어요.',
+    },
+    {
+        stack: 'backend',
+        name: 'MySQL',
+        value: 10,
+        content: 'MySQL로 DB를 관리해봤어요.',
+    },
+    {
+        stack: 'backend',
+        name: 'Sequelize',
+        value: 10,
+        content: 'Sezuelize로 간단한 CRUD 작업을 해봤어요.',
+    },
 ];
 
 export const ETC: SkillItem[] = [
@@ -76,6 +94,12 @@ export const ETC: SkillItem[] = [
         stack: 'etc',
         name: 'AWS',
         value: 10,
-        content: 'AWS로 EC2, S3, Amplify 배포를 해봤어요.',
+        content: 'AWS로 EC2, S3 배포를 해봤어요.',
+    },
+    {
+        stack: 'etc',
+        name: 'Teachable Machine',
+        value: 10,
+        content: 'Teachable Machine으로 AI 모델 학습을 시켜본 경험이 있어요.',
     },
 ];
