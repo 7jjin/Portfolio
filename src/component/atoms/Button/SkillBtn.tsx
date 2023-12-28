@@ -8,27 +8,42 @@ interface SkillBtnStyle {
 interface SkillBtnProps extends SkillBtnStyle {
     children: ReactNode;
     className: string;
-    onClick?: () => void;
 }
 
 const SkillBtn = ({ className, children, ...rest }: SkillBtnProps): ReactElement => {
     return (
         <>
-            <_styledBtn className={className} {...rest}>
-                <p>{children}</p>
-            </_styledBtn>
+            <_styledBtn className={className} {...rest} />
+            <p>{children}</p>
         </>
     );
 };
-const _styledBtn = styled.button<SkillBtnStyle>`
+
+const _styledBtn = styled.input<SkillBtnStyle>`
     position: relative;
-    width: 50px;
-    height: 50px;
+    width: ${(props) => (props.size === 'big' ? '100px' : '50px')};
+    height: ${(props) => (props.size === 'big' ? '100px' : '50px')};
     border-radius: 50%;
     color: white;
-    height: ${(props) => (props.size === 'big' ? '100px' : '30px')};
-    width: ${(props) => (props.size === 'big' ? '100px' : '30px')};
     background-color: black;
+    border: none;
+    cursor: pointer;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    &:focus {
+        outline: none;
+    }
+
+    & + p {
+        position: relative;
+        z-index: 1;
+        color: white;
+        text-align: center;
+        line-height: ${(props) => (props.size === 'big' ? '100px' : '50px')};
+    }
 `;
 
 export default SkillBtn;
