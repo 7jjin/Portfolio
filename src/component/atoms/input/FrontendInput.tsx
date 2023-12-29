@@ -10,7 +10,6 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { lastOpenStackState, openStackState } from '../../../recoil/atoms';
 
 const FrontendInput = () => {
-    const lastOpenStack = useRecoilValue(lastOpenStackState);
     const [openStack, setOpenStack] = useRecoilState(openStackState);
 
     // frontend inputbox open/close 함수

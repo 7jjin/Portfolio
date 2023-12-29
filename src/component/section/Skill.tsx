@@ -16,18 +16,17 @@ const Skill = () => {
 
     // 핸들러 관리
     const handleOpenStack = (stackType: string) => {
-        console.log('Handling open stack:', stackType);
-
+        resetStack();
         // 초기값 -> frontend open
         if (stackType === '' || stackType === 'frontend') {
-            setOpenStack({ ...openStack, frontend: true });
-            console.log(openStack);
+            setOpenStack({ backend: false, etc: false, frontend: true });
+            setLastOpenStack('frontend');
         } else if (stackType === 'backend') {
-            setOpenStack({ ...openStack, backend: true });
-            console.log(openStack);
+            setOpenStack({ frontend: false, etc: false, backend: true });
+            setLastOpenStack('backend');
         } else if (stackType === 'etc') {
-            setOpenStack({ ...openStack, etc: true });
-            console.log(openStack);
+            setOpenStack({ frontend: false, backend: false, etc: true });
+            setLastOpenStack('etc');
         }
     };
 
