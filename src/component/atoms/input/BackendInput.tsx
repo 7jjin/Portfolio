@@ -4,8 +4,25 @@ import expressImg from '../../../assets/express.png';
 import socketImg from '../../../assets/socket.png';
 import mysqlImg from '../../../assets/mysql.png';
 import sequelizeImg from '../../../assets/sequelize.png';
+import { useEffect } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { lastOpenStackState, openStackState } from '../../../recoil/atoms';
 
 const BackendInput = () => {
+    const lastOpenStack = useRecoilValue(lastOpenStackState);
+    const [openStack, setOpenStack] = useRecoilState(openStackState);
+    // frontend inputbox open/close 함수
+    useEffect(() => {
+        const backendCheckbox = document.getElementById('backend') as HTMLInputElement;
+        if (openStack.backend === true) {
+            if (backendCheckbox) {
+                backendCheckbox.checked = true;
+            }
+        } else if (openStack.backend === false) {
+            backendCheckbox.checked = false;
+            setOpenStack({ ...openStack, backend: false });
+        }
+    }, [openStack.backend]);
     return (
         <>
             <_menuOpen type="checkbox" className="menuOpen" name="menuOpen" id="backend" />

@@ -5,8 +5,26 @@ import recoilImg from '../../../assets/recoil.png';
 import reduxToolkitImg from '../../../assets/redux-toolkit.png';
 import zustandImg from '../../../assets/zustand.jpg';
 import styledComponentImg from '../../../assets/styled-component.png';
+import { useEffect } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { lastOpenStackState, openStackState } from '../../../recoil/atoms';
 
 const FrontendInput = () => {
+    const lastOpenStack = useRecoilValue(lastOpenStackState);
+    const [openStack, setOpenStack] = useRecoilState(openStackState);
+
+    // frontend inputbox open/close 함수
+    useEffect(() => {
+        const frontendCheckbox = document.getElementById('frontend') as HTMLInputElement;
+        if (openStack.frontend === true) {
+            if (frontendCheckbox) {
+                frontendCheckbox.checked = true;
+            }
+        } else if (frontendCheckbox.checked === true) {
+            frontendCheckbox.checked = false;
+            setOpenStack({ ...openStack, frontend: false });
+        }
+    }, [openStack.frontend]);
     return (
         <>
             <_menuOpen type="checkbox" className="menuOpen" name="menuOpen" id="frontend" />
@@ -20,16 +38,16 @@ const FrontendInput = () => {
                 <img src={typescriptImg} alt="" />
             </_menuItem>
             <_menuItem className="menuItem reduxToolkit">
-                <img src={recoilImg} alt="" />{' '}
+                <img src={recoilImg} alt="" />
             </_menuItem>
             <_menuItem className="menuItem recoil">
-                <img src={reduxToolkitImg} alt="" />{' '}
+                <img src={reduxToolkitImg} alt="" />
             </_menuItem>
             <_menuItem className="menuItem zustand">
-                <img src={zustandImg} alt="" />{' '}
+                <img src={zustandImg} alt="" />
             </_menuItem>
             <_menuItem className="menuItem styledComponent">
-                <img src={styledComponentImg} alt="" />{' '}
+                <img src={styledComponentImg} alt="" />
             </_menuItem>
         </>
     );

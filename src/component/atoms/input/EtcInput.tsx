@@ -3,8 +3,24 @@ import figmaImg from '../../../assets/figma.png';
 import postmanImg from '../../../assets/postman.png';
 import awsImg from '../../../assets/aws.png';
 import teachableMachineImg from '../../../assets/teachable.png';
-
+import { useEffect } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { lastOpenStackState, openStackState } from '../../../recoil/atoms';
 const EtcInput = () => {
+    const lastOpenStack = useRecoilValue(lastOpenStackState);
+    const [openStack, setOpenStack] = useRecoilState(openStackState);
+    // frontend inputbox open/close 함수
+    useEffect(() => {
+        const etcCheckbox = document.getElementById('etc') as HTMLInputElement;
+        if (openStack.etc === true) {
+            if (etcCheckbox) {
+                etcCheckbox.checked = true;
+            }
+        } else if (openStack.etc === false) {
+            etcCheckbox.checked = false;
+            setOpenStack({ ...openStack, etc: false });
+        }
+    }, [openStack.etc]);
     return (
         <>
             <_menuOpen type="checkbox" className="menuOpen" name="menuOpen" id="etc" />
