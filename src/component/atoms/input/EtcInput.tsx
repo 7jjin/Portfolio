@@ -10,6 +10,9 @@ const EtcInput = () => {
     const lastOpenStack = useRecoilValue(lastOpenStackState);
     const [openStack, setOpenStack] = useRecoilState(openStackState);
     const etcCheckbox = document.getElementById('etc') as HTMLInputElement;
+    const backendCheckbox = document.getElementById('backend') as HTMLInputElement;
+    const frontendCheckbox = document.getElementById('frontend') as HTMLInputElement;
+    const etcBtn = document.getElementById('etcBtn') as HTMLInputElement;
     const etcATag = document.getElementsByClassName('etc') as HTMLCollectionOf<HTMLElement>;
     const backendBtn = document.getElementById('backendBtn') as HTMLInputElement;
     const backendATag = document.getElementsByClassName('backend') as HTMLCollectionOf<HTMLElement>;
@@ -34,8 +37,8 @@ const EtcInput = () => {
     }, [openStack.etc]);
     // frontend input 체크 시 다른 input 태그 이동
     const isOpenHandler = () => {
-        if (backendBtn && backendATag && frontendBtn && frontendATag && etcCheckbox.checked === true) {
-            console.log('etc checked');
+        // etc가 checked on일 때
+        if (etcCheckbox.checked === true) {
             backendBtn.style.marginLeft = '-150px';
             frontendBtn.style.marginLeft = '-90px';
             for (let i = 0; i < backendATag.length; i++) {
@@ -47,9 +50,39 @@ const EtcInput = () => {
             for (let i = 0; i < etcATag.length; i++) {
                 etcATag[i].style.visibility = 'visible';
             }
-        } else {
-            console.log('etc unchecked');
-
+        }
+        // etc가 checked on일 때 backend가 checked 되었을 때
+        else if (backendCheckbox.checked === true) {
+            backendBtn.style.marginLeft = '-40px';
+            frontendBtn.style.marginLeft = '-120px';
+            etcBtn.style.marginLeft = '40px';
+            for (let i = 0; i < frontendATag.length; i++) {
+                frontendATag[i].style.marginLeft = '-120px';
+            }
+            for (let i = 0; i < etcATag.length; i++) {
+                etcATag[i].style.marginLeft = '40px';
+            }
+            for (let i = 0; i < backendATag.length; i++) {
+                backendATag[i].style.visibility = 'visible';
+                backendATag[i].style.marginLeft = '-40px';
+            }
+        }
+        // etc가 checked on 일 때 frontend가 checked 되었을 때
+        else if (frontendCheckbox.checked === true) {
+            backendBtn.style.marginLeft = '70px';
+            etcBtn.style.marginLeft = '10px';
+            for (let i = 0; i < backendATag.length; i++) {
+                backendATag[i].style.marginLeft = '70px';
+            }
+            for (let i = 0; i < etcATag.length; i++) {
+                etcATag[i].style.marginLeft = '10px';
+            }
+            for (let i = 0; i < frontendATag.length; i++) {
+                frontendATag[i].style.visibility = 'visible';
+            }
+        }
+        // etc가 checked on에서 off로 바꼈을 때
+        else {
             backendBtn.style.marginLeft = '-40px';
             frontendBtn.style.marginLeft = '-40px';
             etcCheckbox.checked = false;

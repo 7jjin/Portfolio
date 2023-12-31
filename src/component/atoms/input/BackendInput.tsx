@@ -35,7 +35,7 @@ const BackendInput = () => {
     }, [openStack.backend]);
     // frontend input 체크 시 다른 input 태그 이동
     const isOpenHandler = () => {
-        if (frontendBtn && frontendATag && etcBtn && etcATag && backendCheckbox.checked === true) {
+        if (backendCheckbox.checked === true) {
             console.log('back chekced');
             frontendBtn.style.marginLeft = '-120px';
             etcBtn.style.marginLeft = '40px';
