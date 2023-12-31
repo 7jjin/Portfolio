@@ -12,6 +12,7 @@ import { lastOpenStackState, openStackState } from '../../../recoil/atoms';
 const FrontendInput = () => {
     const [openStack, setOpenStack] = useRecoilState(openStackState);
     const frontendCheckbox = document.getElementById('frontend') as HTMLInputElement;
+    const frontendATag = document.getElementsByClassName('frontend') as HTMLCollectionOf<HTMLElement>;
     const backendBtn = document.getElementById('backendBtn') as HTMLInputElement;
     const backendATag = document.getElementsByClassName('backend') as HTMLCollectionOf<HTMLElement>;
     const etcBtn = document.getElementById('etcBtn') as HTMLInputElement;
@@ -46,6 +47,9 @@ const FrontendInput = () => {
             for (let i = 0; i < etcATag.length; i++) {
                 etcATag[i].style.marginLeft = '10px';
             }
+            for (let i = 0; i < frontendATag.length; i++) {
+                frontendATag[i].style.visibility = 'visible';
+            }
         } else {
             console.log('front unchecked');
 
@@ -57,6 +61,9 @@ const FrontendInput = () => {
             }
             for (let i = 0; i < etcATag.length; i++) {
                 etcATag[i].style.marginLeft = '-40px';
+            }
+            for (let i = 0; i < frontendATag.length; i++) {
+                frontendATag[i].style.visibility = 'hidden';
             }
         }
     };
@@ -97,6 +104,7 @@ const _menuItem = styled.a`
     color: #ffffff;
     text-align: center;
     line-height: 120px;
+    visibility: hidden;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
     transition: all ease-out 200ms;

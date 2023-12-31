@@ -10,7 +10,7 @@ const EtcInput = () => {
     const lastOpenStack = useRecoilValue(lastOpenStackState);
     const [openStack, setOpenStack] = useRecoilState(openStackState);
     const etcCheckbox = document.getElementById('etc') as HTMLInputElement;
-
+    const etcATag = document.getElementsByClassName('etc') as HTMLCollectionOf<HTMLElement>;
     const backendBtn = document.getElementById('backendBtn') as HTMLInputElement;
     const backendATag = document.getElementsByClassName('backend') as HTMLCollectionOf<HTMLElement>;
     const frontendBtn = document.getElementById('frontendBtn') as HTMLInputElement;
@@ -44,6 +44,9 @@ const EtcInput = () => {
             for (let i = 0; i < frontendATag.length; i++) {
                 frontendATag[i].style.marginLeft = '-90px';
             }
+            for (let i = 0; i < etcATag.length; i++) {
+                etcATag[i].style.visibility = 'visible';
+            }
         } else {
             console.log('etc unchecked');
 
@@ -55,6 +58,9 @@ const EtcInput = () => {
             }
             for (let i = 0; i < frontendATag.length; i++) {
                 frontendATag[i].style.marginLeft = '-40px';
+            }
+            for (let i = 0; i < etcATag.length; i++) {
+                etcATag[i].style.visibility = 'hidden';
             }
         }
     };
@@ -88,6 +94,7 @@ const _menuItem = styled.a`
     position: absolute;
     color: #ffffff;
     text-align: center;
+    visibility: hidden;
     line-height: 120px;
     transform: translate3d(0, 0, 0);
     transition: all ease-out 200ms;

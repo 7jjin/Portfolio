@@ -12,6 +12,7 @@ const BackendInput = () => {
     const lastOpenStack = useRecoilValue(lastOpenStackState);
     const [openStack, setOpenStack] = useRecoilState(openStackState);
     const backendCheckbox = document.getElementById('backend') as HTMLInputElement;
+    const backendATag = document.getElementsByClassName('backend') as HTMLCollectionOf<HTMLElement>;
     const frontendBtn = document.getElementById('frontendBtn') as HTMLInputElement;
     const frontendATag = document.getElementsByClassName('frontend') as HTMLCollectionOf<HTMLElement>;
     const etcBtn = document.getElementById('etcBtn') as HTMLInputElement;
@@ -44,6 +45,9 @@ const BackendInput = () => {
             for (let i = 0; i < etcATag.length; i++) {
                 etcATag[i].style.marginLeft = '40px';
             }
+            for (let i = 0; i < backendATag.length; i++) {
+                backendATag[i].style.visibility = 'visible';
+            }
         } else {
             console.log('back unchekced');
 
@@ -54,6 +58,9 @@ const BackendInput = () => {
             }
             for (let i = 0; i < etcATag.length; i++) {
                 etcATag[i].style.marginLeft = '-40px';
+            }
+            for (let i = 0; i < backendATag.length; i++) {
+                backendATag[i].style.visibility = 'hidden';
             }
         }
     };
@@ -91,6 +98,7 @@ const _menuItem = styled.a`
     position: absolute;
     color: #ffffff;
     text-align: center;
+    visibility: hidden;
     line-height: 120px;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
