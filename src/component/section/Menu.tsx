@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import NavBtn from '../atoms/Button/NavBtn';
-import { useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { activeNavBtnState } from '../../recoil/atoms';
 
 const Menu = () => {
-    const [activeButton, setActiveButton] = useState<string>('About');
-
+    const [activeNavBtn, setActiveNavBtn] = useRecoilState(activeNavBtnState);
     // Nav버튼 클릭시 해당 버튼만 동작
     const onClickStyle = (buttonName: string) => {
-        setActiveButton(buttonName);
+        setActiveNavBtn(buttonName);
     };
 
     return (
@@ -17,7 +17,7 @@ const Menu = () => {
                     className={'About'}
                     color={'#FC7A7A'}
                     onClick={() => onClickStyle('About')}
-                    active={activeButton === 'About'}
+                    active={activeNavBtn === 'About'}
                 >
                     ABOUT
                 </NavBtn>
@@ -25,7 +25,7 @@ const Menu = () => {
                     className={'SKILL'}
                     color={'#F09B54'}
                     onClick={() => onClickStyle('SKILL')}
-                    active={activeButton === 'SKILL'}
+                    active={activeNavBtn === 'SKILL'}
                 >
                     SKILL
                 </NavBtn>
@@ -33,7 +33,7 @@ const Menu = () => {
                     className={'PROJECT'}
                     color={'#48BB78'}
                     onClick={() => onClickStyle('PROJECT')}
-                    active={activeButton === 'PROJECT'}
+                    active={activeNavBtn === 'PROJECT'}
                 >
                     PROJECT
                 </NavBtn>
@@ -41,7 +41,7 @@ const Menu = () => {
                     className={'AWARD'}
                     color={'#4299E1'}
                     onClick={() => onClickStyle('AWARD')}
-                    active={activeButton === 'AWARD'}
+                    active={activeNavBtn === 'AWARD'}
                 >
                     AWARD
                 </NavBtn>
@@ -49,7 +49,7 @@ const Menu = () => {
                     className={'BLOG'}
                     color={'#9F7AEA'}
                     onClick={() => onClickStyle('BLOG')}
-                    active={activeButton === 'BLOG'}
+                    active={activeNavBtn === 'BLOG'}
                 >
                     BLOG
                 </NavBtn>
