@@ -5,12 +5,11 @@ import socketImg from '../../../assets/socket.png';
 import mysqlImg from '../../../assets/mysql.png';
 import sequelizeImg from '../../../assets/sequelize.png';
 import { useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { lastOpenStackState, openStackState } from '../../../recoil/atoms';
+import { useRecoilState } from 'recoil';
+import { openStackState } from '../../../recoil/atoms';
 
 const BackendInput = () => {
-    const lastOpenStack = useRecoilValue(lastOpenStackState);
-    const [openStack, setOpenStack] = useRecoilState(openStackState);
+    const [openStack] = useRecoilState(openStackState);
     const backendCheckbox = document.getElementById('backend') as HTMLInputElement;
     const backendATag = document.getElementsByClassName('backend') as HTMLCollectionOf<HTMLElement>;
     const frontendBtn = document.getElementById('frontendBtn') as HTMLInputElement;

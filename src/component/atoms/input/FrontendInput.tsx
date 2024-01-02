@@ -6,11 +6,11 @@ import reduxToolkitImg from '../../../assets/redux-toolkit.png';
 import zustandImg from '../../../assets/zustand.jpg';
 import styledComponentImg from '../../../assets/styled-component.png';
 import { useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { lastOpenStackState, openStackState } from '../../../recoil/atoms';
+import { useRecoilState } from 'recoil';
+import { openStackState } from '../../../recoil/atoms';
 
 const FrontendInput = () => {
-    const [openStack, setOpenStack] = useRecoilState(openStackState);
+    const [openStack] = useRecoilState(openStackState);
     const frontendCheckbox = document.getElementById('frontend') as HTMLInputElement;
     const frontendATag = document.getElementsByClassName('frontend') as HTMLCollectionOf<HTMLElement>;
     const backendBtn = document.getElementById('backendBtn') as HTMLInputElement;
@@ -38,7 +38,6 @@ const FrontendInput = () => {
     // frontend input 체크 시 다른 input 태그 이동
     const isOpenHandler = () => {
         if (backendBtn && backendATag && etcBtn && etcATag && frontendCheckbox.checked === true) {
-            console.log('front checked');
             backendBtn.style.marginLeft = '70px';
             etcBtn.style.marginLeft = '10px';
             for (let i = 0; i < backendATag.length; i++) {
@@ -51,8 +50,6 @@ const FrontendInput = () => {
                 frontendATag[i].style.visibility = 'visible';
             }
         } else {
-            console.log('front unchecked');
-
             backendBtn.style.marginLeft = '-40px';
             etcBtn.style.marginLeft = '-40px';
             frontendCheckbox.checked = false;

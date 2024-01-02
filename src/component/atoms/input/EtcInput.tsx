@@ -4,11 +4,10 @@ import postmanImg from '../../../assets/postman.png';
 import awsImg from '../../../assets/aws.png';
 import teachableMachineImg from '../../../assets/teachable.png';
 import { useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { lastOpenStackState, openStackState } from '../../../recoil/atoms';
+import { useRecoilState } from 'recoil';
+import { openStackState } from '../../../recoil/atoms';
 const EtcInput = () => {
-    const lastOpenStack = useRecoilValue(lastOpenStackState);
-    const [openStack, setOpenStack] = useRecoilState(openStackState);
+    const [openStack] = useRecoilState(openStackState);
     const etcCheckbox = document.getElementById('etc') as HTMLInputElement;
     const backendCheckbox = document.getElementById('backend') as HTMLInputElement;
     const frontendCheckbox = document.getElementById('frontend') as HTMLInputElement;
