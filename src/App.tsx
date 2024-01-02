@@ -6,8 +6,11 @@ import GlobalStyle from './style/GlobalStyles';
 import IntroPage from './pages/IntroPage';
 import SkillPage from './pages/SkillPage';
 import Menu from './component/section/Menu';
+import { useRecoilState } from 'recoil';
+import { activeNavBtnState } from './recoil/atoms';
 function App() {
     const wrapperDivRef = useRef<HTMLDivElement>(null);
+    const [activeNavBtn, setActiveNavBtn] = useRecoilState(activeNavBtnState);
     useEffect(() => {
         const wheelHandler = (e: WheelEvent) => {
             e.preventDefault();
@@ -25,6 +28,7 @@ function App() {
                         left: 0,
                         behavior: 'smooth',
                     });
+                    setActiveNavBtn('SKILL');
                 } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 2) {
                     // 현재 2페이지
                     wrapperDivRef.current!.scrollTo({
@@ -32,6 +36,7 @@ function App() {
                         left: 0,
                         behavior: 'smooth',
                     });
+                    setActiveNavBtn('SKILL');
                 }
             } else {
                 // 스크롤 올릴 때
@@ -42,12 +47,14 @@ function App() {
                         left: 0,
                         behavior: 'smooth',
                     });
+                    setActiveNavBtn('About');
                 } else if (scrollTop >= pageHeight && scrollTop < pageHeight) {
                     wrapperDivRef.current!.scrollTo({
                         top: 0,
                         left: 0,
                         behavior: 'smooth',
                     });
+                    setActiveNavBtn('About');
                 }
             }
         };

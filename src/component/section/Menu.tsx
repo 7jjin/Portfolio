@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import NavBtn from '../atoms/Button/NavBtn';
 import { useRecoilState } from 'recoil';
 import { activeNavBtnState } from '../../recoil/atoms';
+import { useEffect } from 'react';
 
 const Menu = () => {
     const [activeNavBtn, setActiveNavBtn] = useRecoilState(activeNavBtnState);
