@@ -3,11 +3,20 @@ import figmaImg from '../../../assets/figma.png';
 import postmanImg from '../../../assets/postman.png';
 import awsImg from '../../../assets/aws.png';
 import teachableMachineImg from '../../../assets/teachable.png';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { openStackState } from '../../../recoil/atoms';
+import { ETC } from '../../../constant/skills';
+import SkillModal from '../Modal/SkillModal';
+
+interface isModal {
+    isboolean: boolean;
+    name: string;
+    value: number;
+    content: string;
+}
 const EtcInput = () => {
-    const [openStack] = useRecoilState(openStackState);
+    const [openStack, setOpenStack] = useRecoilState(openStackState);
     const etcCheckbox = document.getElementById('etc') as HTMLInputElement;
     const backendCheckbox = document.getElementById('backend') as HTMLInputElement;
     const frontendCheckbox = document.getElementById('frontend') as HTMLInputElement;
@@ -17,6 +26,13 @@ const EtcInput = () => {
     const backendATag = document.getElementsByClassName('backend') as HTMLCollectionOf<HTMLElement>;
     const frontendBtn = document.getElementById('frontendBtn') as HTMLInputElement;
     const frontendATag = document.getElementsByClassName('frontend') as HTMLCollectionOf<HTMLElement>;
+
+    const [modal, setModal] = useState<isModal>({
+        isboolean: false,
+        name: ETC[0].name,
+        value: ETC[0].value,
+        content: ETC[0].content,
+    });
     // frontend inputbox open/close 함수
     useEffect(() => {
         if (etcCheckbox) {
@@ -30,16 +46,18 @@ const EtcInput = () => {
 
     // 체그박스 checked 속성 확인 핸들러
     useEffect(() => {
-        if (backendBtn && backendATag && frontendBtn && frontendATag) {
+        if (etcCheckbox && backendBtn && backendATag && frontendBtn && frontendATag) {
             isOpenHandler();
         }
-    }, [openStack.etc]);
+    }, [etcCheckbox?.checked, openStack.etc]);
     // frontend input 체크 시 다른 input 태그 이동
     const isOpenHandler = () => {
         // etc가 checked on일 때
         if (etcCheckbox.checked === true) {
             backendBtn.style.marginLeft = '-150px';
             frontendBtn.style.marginLeft = '-90px';
+            setOpenStack((prevState) => ({ ...prevState, etc: true }));
+
             for (let i = 0; i < backendATag.length; i++) {
                 backendATag[i].style.marginLeft = '-150px';
             }
@@ -88,6 +106,8 @@ const EtcInput = () => {
             backendBtn.style.marginLeft = '-40px';
             frontendBtn.style.marginLeft = '-40px';
             etcCheckbox.checked = false;
+            setOpenStack((prevState) => ({ ...prevState, etc: false }));
+
             for (let i = 0; i < backendATag.length; i++) {
                 backendATag[i].style.marginLeft = '-40px';
             }
@@ -99,22 +119,73 @@ const EtcInput = () => {
             }
         }
     };
+
+    // skill 상세 모달 on/off
+    const handleModal = ({ isboolean, name, value, content }: isModal) => {
+        setModal({
+            isboolean,
+            name,
+            value,
+            content,
+        });
+    };
     return (
         <>
             <_menuOpen type="checkbox" className="menuOpen" name="menuOpen" id="etc" onChange={isOpenHandler} />
             <_menuOpenButton className="menuOpenButton" htmlFor="etc" id="etcBtn">
                 Etc
+                {openStack.etc && <SkillModal {...modal} />}
             </_menuOpenButton>
-            <_menuItem className="menuItem figma etc">
+            <_menuItem
+                className="menuItem figma etc"
+                onMouseEnter={() =>
+                    handleModal({
+                        isboolean: true,
+                        name: ETC[0].name,
+                        value: ETC[0].value,
+                        content: ETC[0].content,
+                    })
+                }
+            >
                 <img src={figmaImg} alt="Figma" />
             </_menuItem>
-            <_menuItem className="menuItem postman etc">
+            <_menuItem
+                className="menuItem postman etc"
+                onMouseEnter={() =>
+                    handleModal({
+                        isboolean: true,
+                        name: ETC[1].name,
+                        value: ETC[1].value,
+                        content: ETC[1].content,
+                    })
+                }
+            >
                 <img src={postmanImg} alt="Postman" />
             </_menuItem>
-            <_menuItem className="menuItem aws etc">
+            <_menuItem
+                className="menuItem aws etc"
+                onMouseEnter={() =>
+                    handleModal({
+                        isboolean: true,
+                        name: ETC[2].name,
+                        value: ETC[2].value,
+                        content: ETC[2].content,
+                    })
+                }
+            >
                 <img src={awsImg} alt="AWS" />
             </_menuItem>
-            <_menuItem className="menuItem teachable machine etc">
+            <_menuItem
+                className="menuItem teachable machine etc"
+                onMouseEnter={() =>
+                    handleModal({
+                        isboolean: true,
+                        name: ETC[3].name,
+                        value: ETC[3].value,
+                        content: ETC[3].content,
+                    })
+                }
+            >
                 <img src={teachableMachineImg} alt="Teachable machine" />
             </_menuItem>
         </>

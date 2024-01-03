@@ -17,12 +17,10 @@ const SkillModal: React.FC<Props> = ({ isboolean, name, value, content }) => {
     }, [openStack.frontend]);
     return (
         <>
-            {openStack.frontend && (
-                <_stacakModal>
-                    <_modalName className="modalName">{name}</_modalName>
-                    <_modalContent className="modalContent">{content}</_modalContent>
-                </_stacakModal>
-            )}
+            <_stacakModal>
+                <_modalName className="modalName">{name}</_modalName>
+                <_modalContent className="modalContent">{content}</_modalContent>
+            </_stacakModal>
         </>
     );
 };

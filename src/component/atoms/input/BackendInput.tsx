@@ -4,12 +4,21 @@ import expressImg from '../../../assets/express.png';
 import socketImg from '../../../assets/socket.png';
 import mysqlImg from '../../../assets/mysql.png';
 import sequelizeImg from '../../../assets/sequelize.png';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { openStackState } from '../../../recoil/atoms';
+import { BACKEND } from '../../../constant/skills';
+import SkillModal from '../Modal/SkillModal';
+
+interface isModal {
+    isboolean: boolean;
+    name: string;
+    value: number;
+    content: string;
+}
 
 const BackendInput = () => {
-    const [openStack] = useRecoilState(openStackState);
+    const [openStack, setOpenStack] = useRecoilState(openStackState);
     const backendCheckbox = document.getElementById('backend') as HTMLInputElement;
     const backendBtn = document.getElementById('backendBtn') as HTMLInputElement;
 
@@ -22,6 +31,13 @@ const BackendInput = () => {
 
     const etcBtn = document.getElementById('etcBtn') as HTMLInputElement;
     const etcATag = document.getElementsByClassName('etc') as HTMLCollectionOf<HTMLElement>;
+
+    const [modal, setModal] = useState<isModal>({
+        isboolean: false,
+        name: BACKEND[0].name,
+        value: BACKEND[0].value,
+        content: BACKEND[0].content,
+    });
     // frontend inputbox open/close 함수
     useEffect(() => {
         if (backendCheckbox) {
@@ -34,16 +50,18 @@ const BackendInput = () => {
     }, [openStack.backend]);
     // 체그박스 checked 속성 확인 핸들러
     useEffect(() => {
-        if (frontendBtn && frontendATag && etcBtn && etcATag) {
+        if (backendCheckbox && frontendBtn && frontendATag && etcBtn && etcATag) {
             isOpenHandler();
         }
-    }, [openStack.backend]);
+    }, [backendCheckbox?.checked, openStack.backend]);
     // frontend input 체크 시 다른 input 태그 이동
     const isOpenHandler = () => {
         // backend가 checked on일 때
         if (backendCheckbox.checked === true) {
             frontendBtn.style.marginLeft = '-120px';
             etcBtn.style.marginLeft = '40px';
+            setOpenStack((prevState) => ({ ...prevState, backend: true }));
+
             for (let i = 0; i < frontendATag.length; i++) {
                 frontendATag[i].style.marginLeft = '-120px';
             }
@@ -71,11 +89,11 @@ const BackendInput = () => {
         }
         // backend가 checked on이고 etc가 chekced 되었을 때
         else if (etcCheckbox.checked === true) {
-            frontendBtn.style.marginLeft = '-40px';
+            frontendBtn.style.marginLeft = '-90px';
             etcBtn.style.marginLeft = '-40px';
             backendBtn.style.marginLeft = '-150px';
             for (let i = 0; i < frontendATag.length; i++) {
-                frontendATag[i].style.marginLeft = '-40px';
+                frontendATag[i].style.marginLeft = '-90px';
             }
             for (let i = 0; i < etcATag.length; i++) {
                 etcATag[i].style.marginLeft = '-40px';
@@ -86,6 +104,8 @@ const BackendInput = () => {
         }
         // backend가 checked on에서 off로 바꼈을 때
         else {
+            setOpenStack((prevState) => ({ ...prevState, backend: false }));
+
             frontendBtn.style.marginLeft = '-40px';
             etcBtn.style.marginLeft = '-40px';
             for (let i = 0; i < frontendATag.length; i++) {
@@ -99,25 +119,86 @@ const BackendInput = () => {
             }
         }
     };
+
+    // skill 상세 모달 on/off
+    const handleModal = ({ isboolean, name, value, content }: isModal) => {
+        setModal({
+            isboolean,
+            name,
+            value,
+            content,
+        });
+    };
     return (
         <>
             <_menuOpen type="checkbox" className="menuOpen" name="menuOpen" id="backend" onChange={isOpenHandler} />
             <_menuOpenButton className="menuOpenButton" htmlFor="backend" id="backendBtn">
                 Backend
+                {openStack.backend && <SkillModal {...modal} />}
             </_menuOpenButton>
-            <_menuItem className="menuItem node.js backend">
+            <_menuItem
+                className="menuItem node.js backend"
+                onMouseEnter={() =>
+                    handleModal({
+                        isboolean: true,
+                        name: BACKEND[0].name,
+                        value: BACKEND[0].value,
+                        content: BACKEND[0].content,
+                    })
+                }
+            >
                 <img src={nodeJSImg} alt="node.js" />
             </_menuItem>
-            <_menuItem className="menuItem Express backend">
+            <_menuItem
+                className="menuItem Express backend"
+                onMouseEnter={() =>
+                    handleModal({
+                        isboolean: true,
+                        name: BACKEND[1].name,
+                        value: BACKEND[1].value,
+                        content: BACKEND[1].content,
+                    })
+                }
+            >
                 <img src={expressImg} alt="Express" />
             </_menuItem>
-            <_menuItem className="menuItem Socket.io backend">
+            <_menuItem
+                className="menuItem Socket.io backend"
+                onMouseEnter={() =>
+                    handleModal({
+                        isboolean: true,
+                        name: BACKEND[2].name,
+                        value: BACKEND[2].value,
+                        content: BACKEND[2].content,
+                    })
+                }
+            >
                 <img src={socketImg} alt="Socket.io" />
             </_menuItem>
-            <_menuItem className="menuItem MySQL backend">
+            <_menuItem
+                className="menuItem MySQL backend"
+                onMouseEnter={() =>
+                    handleModal({
+                        isboolean: true,
+                        name: BACKEND[3].name,
+                        value: BACKEND[3].value,
+                        content: BACKEND[3].content,
+                    })
+                }
+            >
                 <img src={mysqlImg} alt="MySQL" />
             </_menuItem>
-            <_menuItem className="menuItem Sequelize backend">
+            <_menuItem
+                className="menuItem Sequelize backend"
+                onMouseEnter={() =>
+                    handleModal({
+                        isboolean: true,
+                        name: BACKEND[4].name,
+                        value: BACKEND[4].value,
+                        content: BACKEND[4].content,
+                    })
+                }
+            >
                 <img src={sequelizeImg} alt="Sequelize" />
             </_menuItem>
         </>

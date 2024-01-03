@@ -43,7 +43,6 @@ const FrontendInput = () => {
             if (openStack.frontend === true) {
                 frontendCheckbox.checked = true;
             } else if (openStack.frontend === false) {
-                console.log('hi');
                 frontendCheckbox.checked = false;
             }
         }
@@ -92,7 +91,7 @@ const FrontendInput = () => {
         }
         // frontend가 checked on이고 etc checked 되었을 때
         else if (etcCheckbox.checked === true) {
-            backendBtn.style.marginLeft = '-40px';
+            backendBtn.style.marginLeft = '-150px';
             frontendBtn.style.marginLeft = '-90px';
             etcBtn.style.marginLeft = '-40px';
             for (let i = 0; i < frontendATag.length; i++) {
@@ -109,7 +108,6 @@ const FrontendInput = () => {
         // frontend가 checked on에서 off로 바꼈을 때
         else {
             setOpenStack((prevState) => ({ ...prevState, frontend: false }));
-            console.log(openStack.frontend);
             backendBtn.style.marginLeft = '-40px';
             etcBtn.style.marginLeft = '-40px';
             frontendCheckbox.checked = false;
@@ -140,7 +138,7 @@ const FrontendInput = () => {
             <_menuOpen type="checkbox" className="menuOpen" name="menuOpen" id="frontend" onChange={isOpenHandler} />
             <_menuOpenButton className="menuOpenButton" htmlFor="frontend" id="frontendBtn">
                 Frontend{openStack.frontend}
-                <SkillModal {...modal} />
+                {openStack.frontend && <SkillModal {...modal} />}
             </_menuOpenButton>
             <_menuItem
                 className="menuItem react frontend"
