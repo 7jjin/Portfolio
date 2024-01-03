@@ -70,6 +70,8 @@ const EtcInput = () => {
         else if (frontendCheckbox.checked === true) {
             backendBtn.style.marginLeft = '70px';
             etcBtn.style.marginLeft = '10px';
+            frontendBtn.style.marginLeft = '-40px';
+
             for (let i = 0; i < backendATag.length; i++) {
                 backendATag[i].style.marginLeft = '70px';
             }
@@ -77,6 +79,7 @@ const EtcInput = () => {
                 etcATag[i].style.marginLeft = '10px';
             }
             for (let i = 0; i < frontendATag.length; i++) {
+                frontendATag[i].style.marginLeft = '-40px';
                 frontendATag[i].style.visibility = 'visible';
             }
         }

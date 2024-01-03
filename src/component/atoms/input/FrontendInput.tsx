@@ -5,18 +5,37 @@ import recoilImg from '../../../assets/recoil.png';
 import reduxToolkitImg from '../../../assets/redux-toolkit.png';
 import zustandImg from '../../../assets/zustand.jpg';
 import styledComponentImg from '../../../assets/styled-component.png';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { openStackState } from '../../../recoil/atoms';
+import { FRONTEND } from '../../../constant/skills';
+import SkillModal from '../Modal/SkillModal';
+
+interface isModal {
+    isboolean: boolean;
+    name: string;
+    value: number;
+    content: string;
+}
 
 const FrontendInput = () => {
-    const [openStack] = useRecoilState(openStackState);
+    const [openStack, setOpenStack] = useRecoilState(openStackState);
+    const etcCheckbox = document.getElementById('etc') as HTMLInputElement;
+    const backendCheckbox = document.getElementById('backend') as HTMLInputElement;
     const frontendCheckbox = document.getElementById('frontend') as HTMLInputElement;
-    const frontendATag = document.getElementsByClassName('frontend') as HTMLCollectionOf<HTMLElement>;
-    const backendBtn = document.getElementById('backendBtn') as HTMLInputElement;
-    const backendATag = document.getElementsByClassName('backend') as HTMLCollectionOf<HTMLElement>;
     const etcBtn = document.getElementById('etcBtn') as HTMLInputElement;
     const etcATag = document.getElementsByClassName('etc') as HTMLCollectionOf<HTMLElement>;
+    const backendBtn = document.getElementById('backendBtn') as HTMLInputElement;
+    const backendATag = document.getElementsByClassName('backend') as HTMLCollectionOf<HTMLElement>;
+    const frontendBtn = document.getElementById('frontendBtn') as HTMLInputElement;
+    const frontendATag = document.getElementsByClassName('frontend') as HTMLCollectionOf<HTMLElement>;
+
+    const [modal, setModal] = useState<isModal>({
+        isboolean: false,
+        name: FRONTEND[0].name,
+        value: FRONTEND[0].value,
+        content: FRONTEND[0].content,
+    });
 
     // frontend inputbox open/close 함수
     useEffect(() => {
@@ -24,6 +43,7 @@ const FrontendInput = () => {
             if (openStack.frontend === true) {
                 frontendCheckbox.checked = true;
             } else if (openStack.frontend === false) {
+                console.log('hi');
                 frontendCheckbox.checked = false;
             }
         }
@@ -31,15 +51,19 @@ const FrontendInput = () => {
 
     // 체그박스 checked 속성 확인 핸들러
     useEffect(() => {
-        if (backendBtn && backendATag && etcBtn && etcATag) {
+        if (frontendCheckbox && backendBtn && backendATag && etcBtn && etcATag) {
             isOpenHandler();
         }
-    }, [openStack.frontend]);
+    }, [frontendCheckbox?.checked, openStack.frontend]);
+
     // frontend input 체크 시 다른 input 태그 이동
     const isOpenHandler = () => {
-        if (backendBtn && backendATag && etcBtn && etcATag && frontendCheckbox.checked === true) {
+        // frontend가 checked on일 때
+        if (frontendCheckbox.checked === true) {
             backendBtn.style.marginLeft = '70px';
             etcBtn.style.marginLeft = '10px';
+
+            setOpenStack((prevState) => ({ ...prevState, frontend: true }));
             for (let i = 0; i < backendATag.length; i++) {
                 backendATag[i].style.marginLeft = '70px';
             }
@@ -49,10 +73,47 @@ const FrontendInput = () => {
             for (let i = 0; i < frontendATag.length; i++) {
                 frontendATag[i].style.visibility = 'visible';
             }
-        } else {
+        }
+        // frontend가 checked on이고 backend가 checked 되었을 때
+        else if (backendCheckbox.checked === true) {
+            backendBtn.style.marginLeft = '-40px';
+            frontendBtn.style.marginLeft = '-120px';
+            etcBtn.style.marginLeft = '40px';
+            for (let i = 0; i < frontendATag.length; i++) {
+                frontendATag[i].style.marginLeft = '-120px';
+            }
+            for (let i = 0; i < etcATag.length; i++) {
+                etcATag[i].style.marginLeft = '40px';
+            }
+            for (let i = 0; i < backendATag.length; i++) {
+                backendATag[i].style.visibility = 'visible';
+                backendATag[i].style.marginLeft = '-40px';
+            }
+        }
+        // frontend가 checked on이고 etc checked 되었을 때
+        else if (etcCheckbox.checked === true) {
+            backendBtn.style.marginLeft = '-40px';
+            frontendBtn.style.marginLeft = '-90px';
+            etcBtn.style.marginLeft = '-40px';
+            for (let i = 0; i < frontendATag.length; i++) {
+                frontendATag[i].style.marginLeft = '-90px';
+            }
+            for (let i = 0; i < etcATag.length; i++) {
+                etcATag[i].style.marginLeft = '-40px';
+                etcATag[i].style.visibility = 'visible';
+            }
+            for (let i = 0; i < backendATag.length; i++) {
+                backendATag[i].style.marginLeft = '-150px';
+            }
+        }
+        // frontend가 checked on에서 off로 바꼈을 때
+        else {
+            setOpenStack((prevState) => ({ ...prevState, frontend: false }));
+            console.log(openStack.frontend);
             backendBtn.style.marginLeft = '-40px';
             etcBtn.style.marginLeft = '-40px';
             frontendCheckbox.checked = false;
+
             for (let i = 0; i < backendATag.length; i++) {
                 backendATag[i].style.marginLeft = '-40px';
             }
@@ -64,28 +125,147 @@ const FrontendInput = () => {
             }
         }
     };
+
+    // skill 상세 모달 on/off
+    const handleModal = ({ isboolean, name, value, content }: isModal) => {
+        setModal({
+            isboolean,
+            name,
+            value,
+            content,
+        });
+    };
     return (
         <>
             <_menuOpen type="checkbox" className="menuOpen" name="menuOpen" id="frontend" onChange={isOpenHandler} />
             <_menuOpenButton className="menuOpenButton" htmlFor="frontend" id="frontendBtn">
                 Frontend{openStack.frontend}
+                <SkillModal {...modal} />
             </_menuOpenButton>
-            <_menuItem className="menuItem react frontend">
+            <_menuItem
+                className="menuItem react frontend"
+                onMouseEnter={() =>
+                    handleModal({
+                        isboolean: true,
+                        name: FRONTEND[0].name,
+                        value: FRONTEND[0].value,
+                        content: FRONTEND[0].content,
+                    })
+                }
+                // onMouseLeave={() =>
+                //     handleModal({
+                //         isboolean: false,
+                //         stack: '',
+                //         value: 0,
+                //         content: '',
+                //     })
+                // }
+            >
                 <img src={reactImg} alt="React" />
             </_menuItem>
-            <_menuItem className="menuItem typescript frontend">
+            <_menuItem
+                className="menuItem typescript frontend"
+                onMouseEnter={() =>
+                    handleModal({
+                        isboolean: true,
+                        name: FRONTEND[1].name,
+                        value: FRONTEND[1].value,
+                        content: FRONTEND[1].content,
+                    })
+                }
+                // onMouseLeave={() =>
+                //     handleModal({
+                //         isboolean: false,
+                //         stack: '',
+                //         value: 0,
+                //         content: '',
+                //     })
+                // }
+            >
                 <img src={typescriptImg} alt="TypeScript" />
             </_menuItem>
-            <_menuItem className="menuItem reduxToolkit frontend">
-                <img src={recoilImg} alt="ReduxTollkit" />
+            <_menuItem
+                className="menuItem reduxToolkit frontend"
+                onMouseEnter={() =>
+                    handleModal({
+                        isboolean: true,
+                        name: FRONTEND[2].name,
+                        value: FRONTEND[2].value,
+                        content: FRONTEND[2].content,
+                    })
+                }
+                // onMouseLeave={() =>
+                //     handleModal({
+                //         isboolean: false,
+                //         stack: '',
+                //         value: 0,
+                //         content: '',
+                //     })
+                // }
+            >
+                <img src={reduxToolkitImg} alt="ReduxTollkit" />
             </_menuItem>
-            <_menuItem className="menuItem recoil frontend">
-                <img src={reduxToolkitImg} alt="Recoil" />
+            <_menuItem
+                className="menuItem Recoil frontend"
+                onMouseEnter={() =>
+                    handleModal({
+                        isboolean: true,
+                        name: FRONTEND[3].name,
+                        value: FRONTEND[3].value,
+                        content: FRONTEND[3].content,
+                    })
+                }
+                // onMouseLeave={() =>
+                //     handleModal({
+                //         isboolean: false,
+                //         stack: '',
+                //         value: 0,
+                //         content: '',
+                //     })
+                // }
+            >
+                <img src={recoilImg} alt="Recoil" />
             </_menuItem>
-            <_menuItem className="menuItem zustand frontend">
+            <_menuItem
+                className="menuItem zustand frontend"
+                onMouseEnter={() =>
+                    handleModal({
+                        isboolean: true,
+                        name: FRONTEND[4].name,
+                        value: FRONTEND[4].value,
+                        content: FRONTEND[4].content,
+                    })
+                }
+                // onMouseLeave={() =>
+                //     handleModal({
+                //         isboolean: false,
+                //         stack: '',
+                //         value: 0,
+                //         content: '',
+                //     })
+                // }
+            >
                 <img src={zustandImg} alt="Zustand" />
             </_menuItem>
-            <_menuItem className="menuItem styledComponent frontend">
+            <_menuItem
+                className="menuItem styledComponent frontend"
+                onMouseEnter={() =>
+                    handleModal({
+                        isboolean: true,
+                        name: FRONTEND[5].name,
+                        value: FRONTEND[5].value,
+                        content: FRONTEND[5].content,
+                    })
+                }
+                // onMouseLeave={() =>
+                //     handleModal({
+                //         isboolean: false,
+                //         stack: '',
+                //         value: 0,
+                //         content: '',
+                //     })
+                // }
+            >
                 <img src={styledComponentImg} alt="StyledComponent" />
             </_menuItem>
         </>

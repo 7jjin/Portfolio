@@ -40,7 +40,7 @@ export const FRONTEND: SkillItem[] = [
         stack: 'frontend',
         name: 'Styled-component',
         value: 60,
-        content: 'Styled-component를 사용해봤어요.',
+        content: 'Styled-components를 사용한 CSS-in-JS 라이브러리 사용 경험이 있어요.',
     },
 ];
 
