@@ -12,9 +12,7 @@ interface Props {
 
 const SkillModal: React.FC<Props> = ({ isboolean, name, value, content }) => {
     const [openStack] = useRecoilState(openStackState);
-    useEffect(() => {
-        console.log(openStack.frontend);
-    }, [openStack.frontend]);
+
     return (
         <>
             <_stacakModal>

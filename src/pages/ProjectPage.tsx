@@ -1,11 +1,10 @@
 import styled from 'styled-components';
-import Skill from '../component/section/Skill';
 
-const SkillPage = () => {
+const ProjectPage = () => {
     return (
         <>
-            <_wrapper className="SkillPage">
-                <Skill />
+            <_wrapper className="ProjectPage">
+                <div>Project Page</div>
             </_wrapper>
         </>
     );
@@ -15,4 +14,4 @@ const _wrapper = styled.div`
     height: 100vh;
 `;
 
-export default SkillPage;
+export default ProjectPage;

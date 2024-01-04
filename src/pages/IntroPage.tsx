@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const IntroPage = () => {
     return (
         <>
-            <_Wrapper>
+            <_Wrapper className="IntroPage">
                 <Intro />
             </_Wrapper>
         </>

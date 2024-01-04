@@ -8,9 +8,11 @@ import SkillPage from './pages/SkillPage';
 import Menu from './component/section/Menu';
 import { useRecoilState } from 'recoil';
 import { activeNavBtnState } from './recoil/atoms';
+import ProjectPage from './pages/ProjectPage';
 function App() {
     const wrapperDivRef = useRef<HTMLDivElement>(null);
     const [activeNavBtn, setActiveNavBtn] = useRecoilState(activeNavBtnState);
+    const DIVIDER_HEIGHT = 5;
     useEffect(() => {
         const wheelHandler = (e: WheelEvent) => {
             e.preventDefault();
@@ -24,7 +26,7 @@ function App() {
                 if (scrollTop >= 0 && scrollTop < pageHeight) {
                     // 현재 1페이지
                     wrapperDivRef.current!.scrollTo({
-                        top: pageHeight,
+                        top: pageHeight + DIVIDER_HEIGHT,
                         left: 0,
                         behavior: 'smooth',
                     });
@@ -32,14 +34,23 @@ function App() {
                 } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 2) {
                     // 현재 2페이지
                     wrapperDivRef.current!.scrollTo({
-                        top: pageHeight * 2,
+                        top: pageHeight * 2 + DIVIDER_HEIGHT,
                         left: 0,
                         behavior: 'smooth',
                     });
-                    setActiveNavBtn('SKILL');
+                    setActiveNavBtn('PROJECT');
+                } else if (scrollTop >= pageHeight * 2 && scrollTop < pageHeight * 3) {
+                    // 현재 3페이지
+                    wrapperDivRef.current!.scrollTo({
+                        top: pageHeight * 3 + DIVIDER_HEIGHT,
+                        left: 0,
+                        behavior: 'smooth',
+                    });
+                    setActiveNavBtn('PROJECT');
                 }
             } else {
                 // 스크롤 올릴 때
+
                 if (scrollTop >= 0 && scrollTop < pageHeight) {
                     // 현재 1페이지
                     wrapperDivRef.current!.scrollTo({
@@ -48,13 +59,20 @@ function App() {
                         behavior: 'smooth',
                     });
                     setActiveNavBtn('About');
-                } else if (scrollTop >= pageHeight && scrollTop < pageHeight) {
+                } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 2) {
                     wrapperDivRef.current!.scrollTo({
                         top: 0,
                         left: 0,
                         behavior: 'smooth',
                     });
                     setActiveNavBtn('About');
+                } else if (scrollTop >= pageHeight * 2 && scrollTop < pageHeight * 3) {
+                    wrapperDivRef.current!.scrollTo({
+                        top: pageHeight + DIVIDER_HEIGHT,
+                        left: 0,
+                        behavior: 'smooth',
+                    });
+                    setActiveNavBtn('SKILL');
                 }
             }
         };
@@ -74,6 +92,7 @@ function App() {
             <_wrapper className="wrapper" ref={wrapperDivRef}>
                 <IntroPage />
                 <SkillPage />
+                <ProjectPage />
             </_wrapper>
         </div>
     );
