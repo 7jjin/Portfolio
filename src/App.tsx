@@ -12,7 +12,7 @@ import ProjectPage from './pages/ProjectPage';
 function App() {
     const wrapperDivRef = useRef<HTMLDivElement>(null);
     const [activeNavBtn, setActiveNavBtn] = useRecoilState(activeNavBtnState);
-    const DIVIDER_HEIGHT = 5;
+    const DIVIDER_HEIGHT = 1;
     useEffect(() => {
         const wheelHandler = (e: WheelEvent) => {
             e.preventDefault();

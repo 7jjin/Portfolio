@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import Project from '../component/section/Project';
 
 const ProjectPage = () => {
     return (
         <>
             <_wrapper className="ProjectPage">
-                <div>Project Page</div>
+                <Project />
             </_wrapper>
         </>
     );

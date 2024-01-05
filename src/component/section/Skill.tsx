@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import FrontendInput from '../atoms/input/FrontendInput';
-import BackendInput from '../atoms/input/BackendInput';
-import EtcInput from '../atoms/input/EtcInput';
+import FrontendInput from '../atoms/Input/FrontendInput';
+import BackendInput from '../atoms/Input/BackendInput';
+import EtcInput from '../atoms/Input/EtcInput';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
 import { lastOpenStackState, openStackState } from '../../recoil/atoms';
