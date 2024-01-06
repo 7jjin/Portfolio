@@ -1,43 +1,74 @@
 import styled from 'styled-components';
-import portfoiloMain from '../../../src/assets/portfoilo-main.png';
+import ProjectBox from '../atoms/ProjectBox';
+import { PROJECT } from '../../constant/project';
+import { useState } from 'react';
 
 interface styledProps {
     position: string;
 }
+interface Props {
+    position: string;
+    img: string;
+    name: string;
+    isGroup: boolean;
+    content: string;
+    stack: string[];
+}
 const Project = () => {
+    const [selectedProject, setSelectedProject] = useState<Props | null>(null);
+
+    const handleProjectClick = (project: Props) => {
+        console.log('hi');
+        setSelectedProject(project);
+    };
     return (
         <>
             <_skillBox>
                 <_hr />
                 <_dot position="20%">
-                    <_projectBox className="projcetBox">
-                        <div className="imgBox">
-                            <_img src={portfoiloMain} alt="" />
-                        </div>
-                        <_infoBox className="infoBox">
-                            <_nameBox className="nameBox">
-                                <span>DoongG</span>
-                                <_typeBox className="typeBox">
-                                    <span>Team Project</span>
-                                </_typeBox>
-                            </_nameBox>
-
-                            <_contentBox className="contentBox">
-                                <span>
-                                    자취생들을 위한 종합 플랫폼 프로젝트입니다. 카카오API를 활용하여 지도와 주소등
-                                    다양한 기능을 경험해봤습니다.
-                                </span>
-                            </_contentBox>
-                            <_stackBox className="stackBox">
-                                <div className="stack">stack</div>
-                                <div className="stackList">React, TypeScript, Styled-component, Zustand</div>
-                            </_stackBox>
-                        </_infoBox>
-                    </_projectBox>
+                    <ProjectBox
+                        position={PROJECT.SYOS.position}
+                        img={PROJECT.SYOS.img}
+                        name={PROJECT.SYOS.name}
+                        isGroup={PROJECT.SYOS.isGroup}
+                        content={PROJECT.SYOS.content}
+                        stack={PROJECT.SYOS.stack}
+                        onClick={() => handleProjectClick(PROJECT.SYOS)}
+                    />
                 </_dot>
-                <_dot position="38%"></_dot>
-                <_dot position="57%"></_dot>
-                <_dot position="76%"></_dot>
+                <_dot position="38%">
+                    <ProjectBox
+                        position={PROJECT.JinCha.position}
+                        img={PROJECT.JinCha.img}
+                        name={PROJECT.JinCha.name}
+                        isGroup={PROJECT.JinCha.isGroup}
+                        content={PROJECT.JinCha.content}
+                        stack={PROJECT.JinCha.stack}
+                        onClick={() => handleProjectClick(PROJECT.JinCha)}
+                    />
+                </_dot>
+                <_dot position="57%">
+                    <ProjectBox
+                        position={PROJECT.DoongG.position}
+                        img={PROJECT.DoongG.img}
+                        name={PROJECT.DoongG.name}
+                        isGroup={PROJECT.DoongG.isGroup}
+                        content={PROJECT.DoongG.content}
+                        stack={PROJECT.DoongG.stack}
+                        onClick={() => handleProjectClick(PROJECT.DoongG)}
+                    />
+                </_dot>
+                <_dot position="76%">
+                    <ProjectBox
+                        position={PROJECT.Portfoilo.position}
+                        img={PROJECT.Portfoilo.img}
+                        name={PROJECT.Portfoilo.name}
+                        isGroup={PROJECT.Portfoilo.isGroup}
+                        content={PROJECT.Portfoilo.content}
+                        stack={PROJECT.Portfoilo.stack}
+                        onClick={() => handleProjectClick(PROJECT.Portfoilo)}
+                    />
+                </_dot>
             </_skillBox>
         </>
     );
@@ -85,58 +116,4 @@ const _dot = styled.div<styledProps>`
     ${({ position }) => (position ? `left: ${position};` : '')}
 `;
 
-const _projectBox = styled.div`
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate3d(-50%, 10%, 0);
-    width: 300px;
-    height: 320px;
-    background-color: white;
-    box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.08);
-    border-radius: 5px;
-`;
-
-const _img = styled.img`
-    width: 100%;
-`;
-
-const _infoBox = styled.div`
-    padding: 5px 7px;
-`;
-
-const _nameBox = styled.div`
-    display: flex;
-    align-items: flex-end;
-    & > span {
-        font-size: 20px;
-        font-weight: 700;
-    }
-`;
-const _typeBox = styled.div`
-    padding-left: 8px;
-    & > span {
-        font-size: 14px;
-    }
-`;
-const _contentBox = styled.div`
-    line-height: 1.3;
-    margin-top: 11px;
-`;
-const _stackBox = styled.div`
-    margin-top: 15px;
-    & > .stack {
-        font-size: 0%.95rem;
-        padding: 2px 6px;
-        display: inline;
-        border-radius: 8px;
-        background-color: #00000021;
-    }
-    & > .stackList {
-        font-size: 12px;
-        margin-top: 5px;
-    }
-`;
 export default Project;
