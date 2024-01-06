@@ -1,5 +1,9 @@
+import portfoiloMain from 'assets/portfoilo-main.png';
+
 export const PROJECT = {
     Portfoilo: {
+        name: 'Portfoilo',
+        img: portfoiloMain,
         isGroup: true,
         content:
             '자취생들을 위한 종합 플랫폼 프로젝트입니다. 카카오API를 활용하여 지도와 주소등 다양한 기능을 경험해봤습니다.',
