@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import ProjectBox from '../atoms/ProjectBox';
 import { PROJECT } from '../../constant/project';
 import { useState } from 'react';
+import ModalPortal from 'helpers/portal';
+import ProjectModal from 'component/atoms/Modal/ProjectModal';
 
 interface styledProps {
     position: string;
@@ -14,16 +16,23 @@ interface Props {
     content: string;
     stack: string[];
 }
+interface ModalProps {
+    setOnModal: (state: boolean) => void;
+}
+
 const Project = () => {
     const [selectedProject, setSelectedProject] = useState<Props | null>(null);
+    const [modalOn, setModalOn] = useState(false);
 
+    // Project Modal에 props 전달 Handler
     const handleProjectClick = (project: Props) => {
-        console.log('hi');
+        console.log(project);
         setSelectedProject(project);
+        setModalOn(!modalOn);
     };
     return (
         <>
-            <_skillBox>
+            <_skillBox className="skillBox">
                 <_hr />
                 <_dot position="20%">
                     <ProjectBox
@@ -69,6 +78,7 @@ const Project = () => {
                         onClick={() => handleProjectClick(PROJECT.Portfoilo)}
                     />
                 </_dot>
+                <ModalPortal>{modalOn && <ProjectModal setOnModal={setModalOn}>테스트 모달</ProjectModal>}</ModalPortal>
             </_skillBox>
         </>
     );
