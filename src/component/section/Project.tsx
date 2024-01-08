@@ -16,9 +16,6 @@ interface Props {
     content: string;
     stack: string[];
 }
-interface ModalProps {
-    setOnModal: (state: boolean) => void;
-}
 
 const Project = () => {
     const [selectedProject, setSelectedProject] = useState<Props | null>(null);
@@ -78,7 +75,11 @@ const Project = () => {
                         onClick={() => handleProjectClick(PROJECT.Portfoilo)}
                     />
                 </_dot>
-                <ModalPortal>{modalOn && <ProjectModal setOnModal={setModalOn}>테스트 모달</ProjectModal>}</ModalPortal>
+                <ModalPortal>
+                    {modalOn && selectedProject && (
+                        <ProjectModal setModalOn={setModalOn} selectedProject={selectedProject}></ProjectModal>
+                    )}
+                </ModalPortal>
             </_skillBox>
         </>
     );
