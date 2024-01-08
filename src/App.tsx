@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-
 import GlobalStyle from './style/GlobalStyles';
-
 import IntroPage from './pages/IntroPage';
 import SkillPage from './pages/SkillPage';
 import Menu from './component/section/Menu';

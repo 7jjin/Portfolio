@@ -13,7 +13,13 @@ interface Props {
     img: string;
     name: string;
     isGroup: boolean;
-    content: string;
+    period: string;
+    member: number;
+    deployLink: string;
+    repoLink: string;
+    subContent: string;
+    mainContent: string[];
+    functionList: string[];
     stack: string[];
 }
 
@@ -23,7 +29,6 @@ const Project = () => {
 
     // Project Modal에 props 전달 Handler
     const handleProjectClick = (project: Props) => {
-        console.log(project);
         setSelectedProject(project);
         setModalOn(!modalOn);
     };
@@ -37,7 +42,7 @@ const Project = () => {
                         img={PROJECT.SYOS.img}
                         name={PROJECT.SYOS.name}
                         isGroup={PROJECT.SYOS.isGroup}
-                        content={PROJECT.SYOS.content}
+                        subContent={PROJECT.SYOS.subContent}
                         stack={PROJECT.SYOS.stack}
                         onClick={() => handleProjectClick(PROJECT.SYOS)}
                     />
@@ -48,7 +53,7 @@ const Project = () => {
                         img={PROJECT.JinCha.img}
                         name={PROJECT.JinCha.name}
                         isGroup={PROJECT.JinCha.isGroup}
-                        content={PROJECT.JinCha.content}
+                        subContent={PROJECT.JinCha.subContent}
                         stack={PROJECT.JinCha.stack}
                         onClick={() => handleProjectClick(PROJECT.JinCha)}
                     />
@@ -59,7 +64,7 @@ const Project = () => {
                         img={PROJECT.DoongG.img}
                         name={PROJECT.DoongG.name}
                         isGroup={PROJECT.DoongG.isGroup}
-                        content={PROJECT.DoongG.content}
+                        subContent={PROJECT.DoongG.subContent}
                         stack={PROJECT.DoongG.stack}
                         onClick={() => handleProjectClick(PROJECT.DoongG)}
                     />
@@ -70,7 +75,7 @@ const Project = () => {
                         img={PROJECT.Portfoilo.img}
                         name={PROJECT.Portfoilo.name}
                         isGroup={PROJECT.Portfoilo.isGroup}
-                        content={PROJECT.Portfoilo.content}
+                        subContent={PROJECT.Portfoilo.subContent}
                         stack={PROJECT.Portfoilo.stack}
                         onClick={() => handleProjectClick(PROJECT.Portfoilo)}
                     />

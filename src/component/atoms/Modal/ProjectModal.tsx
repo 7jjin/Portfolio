@@ -8,6 +8,7 @@ import { Pagination, Navigation } from 'swiper/modules';
 import doongg from 'assets/doongg.png';
 import gif1 from 'assets/darkmode.gif';
 import { IoMdCheckmark } from 'react-icons/io';
+import { VscChromeClose } from 'react-icons/vsc';
 
 interface Props {
     setModalOn: (state: boolean) => void;
@@ -16,14 +17,18 @@ interface Props {
         img: string;
         name: string;
         isGroup: boolean;
-        content: string;
+        period: string;
+        member: number;
+        deployLink: string;
+        repoLink: string;
+        subContent: string;
+        mainContent: string[];
+        functionList: string[];
         stack: string[];
     };
 }
 
 const ProjectModal: React.FC<Props> = ({ setModalOn, selectedProject }) => {
-    console.log(selectedProject.name);
-
     const temp = [
         'Teachable Machine을 활용한 머신러닝을 통해 사용자에게 알맞은 책상 분위기를 추천해주는 기능 구현',
         '이미지 안에 상품 클릭 시 상품 정보를 입력할 수 있는 란을 생성하고 이 좌표를  이미지 크기에 맞게 %로 변환하여 상품 정보와 좌표를 DB에 저장하는 기능 구현',
@@ -69,17 +74,17 @@ const ProjectModal: React.FC<Props> = ({ setModalOn, selectedProject }) => {
                                     {selectedProject.isGroup ? <span>Team project</span> : <span>Solo project</span>}
                                 </_titleBox>
                                 <_periodBox className="periodBox">
-                                    <span>2023.04.05 ~ 2023.05.06</span>
-                                    <span>(4명)</span>
+                                    <span>{selectedProject.period}</span>
+                                    <span>({selectedProject.member}명)</span>
                                 </_periodBox>
 
                                 <_deployBox className="deployBox">
                                     <span>배포 링크</span>
-                                    <a href="https://githob.com/7jjin/SYOS">https://githob.com/7jjin/SYOS</a>
+                                    <a href={selectedProject.deployLink}>{selectedProject.deployLink}</a>
                                 </_deployBox>
                                 <_repoBox className="repoBox">
                                     <span>리포지토리</span>
-                                    <a href="https://github.com/7jjin/SYOS">https://githob.com/7jjin/SYOS</a>
+                                    <a href={selectedProject.repoLink}>{selectedProject.repoLink}</a>
                                 </_repoBox>
                                 <_stackBox className="stackBox">
                                     <span>기술스택</span>
@@ -97,20 +102,14 @@ const ProjectModal: React.FC<Props> = ({ setModalOn, selectedProject }) => {
                         <_rightBox className="rightBox">
                             <_introBox className="introBox">
                                 <span>프로젝트 소개</span>
-                                <p>
-                                    부트캠프의 단편적인 요구사항만 해결하는 과제를 수행하며, 개인의 성장에 의구심을 느껴
-                                    진행한 프로젝트입니다. 요구사항 및 기능정의 부터 구현까지 스스로 진행하는 것을
-                                    목표로 프로젝트를 진행하였습니다.
-                                </p>
-                                <p>
-                                    노션으로 프로젝트를 관리하며 사용자 요구사항 및 기능을 정의하였습니다. 또한 피그마로
-                                    디자인 프로토타입을 구현하며 UX 향상을 고민하였습니다.
-                                </p>
+                                {selectedProject.mainContent.map((item) => (
+                                    <p>{item}</p>
+                                ))}
                             </_introBox>
                             <_functionBox className="functionBox">
                                 <span>구현 기능</span>
                                 <div className="functionListBox">
-                                    {temp.map((item) => (
+                                    {selectedProject.functionList.map((item) => (
                                         <_functionList className="functionList">
                                             <div>
                                                 <IoMdCheckmark />
@@ -122,6 +121,9 @@ const ProjectModal: React.FC<Props> = ({ setModalOn, selectedProject }) => {
                             </_functionBox>
                         </_rightBox>
                     </_content>
+                    <_cancelBtn className="cancelBtn">
+                        <VscChromeClose className="button" onClick={() => setModalOn(false)} />
+                    </_cancelBtn>
                 </_wrapper>
             </_background>
         </>
@@ -291,7 +293,10 @@ const _introBox = styled.div`
     & > span {
         font-size: 24px;
         font-weight: 600;
-        background-image: linear-gradient(transparent 70%, #48bb7885 30%);
+        background-image: linear-gradient(269deg, rgb(0 0 0 / 5%), #00e96185);
+        background-size: 100% 50%;
+        background-repeat: no-repeat;
+        background-position: bottom;
     }
     & p {
         letter-spacing: -0.5px;
@@ -302,21 +307,25 @@ const _introBox = styled.div`
     }
 `;
 const _functionBox = styled.div`
-    padding-top: 10px;
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     & > span {
         font-size: 24px;
         font-weight: 600;
-        background-image: linear-gradient(transparent 70%, #48bb7885 30%);
+        background-image: linear-gradient(269deg, rgb(0 0 0 / 5%), #00e96185);
+        background-size: 100% 50%;
+        background-repeat: no-repeat;
+        background-position: bottom;
+        margin-bottom: 10px;
     }
     & p {
         letter-spacing: -0.5px;
         font-size: 16px;
         padding-top: 10px;
         text-align: left;
-        line-height: 1.45;
+        line-height: 1.3;
     }
 `;
 const _functionList = styled.div`
@@ -327,6 +336,20 @@ const _functionList = styled.div`
         font-size: 24px;
         padding-top: 10px;
         margin-right: 10px;
+    }
+`;
+
+// cancel Button
+const _cancelBtn = styled.div`
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    opacity: 0.5;
+    &:hover {
+        opacity: 1;
+    }
+    & > .button {
+        font-size: 16px;
     }
 `;
 

@@ -5,12 +5,12 @@ interface Props {
     img: string;
     name: string;
     isGroup: boolean;
-    content: string;
+    subContent: string;
     stack: string[];
     onClick: () => void;
 }
 
-const ProjectBox: React.FC<Props> = ({ position, img, name, isGroup, content, stack, onClick }) => {
+const ProjectBox: React.FC<Props> = ({ position, img, name, isGroup, subContent, stack, onClick }) => {
     return (
         <>
             <_projectBox className="projcetBox" position={position} onClick={onClick}>
@@ -26,7 +26,7 @@ const ProjectBox: React.FC<Props> = ({ position, img, name, isGroup, content, st
                     </_nameBox>
 
                     <_contentBox className="contentBox">
-                        <span>{content}</span>
+                        <span>{subContent}</span>
                     </_contentBox>
                     <_stackBox className="stackBox">
                         <div className="stack">Stack</div>
