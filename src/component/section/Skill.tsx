@@ -84,6 +84,7 @@ const _skillBox = styled.section`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     width: 90%;
     background-color: #fffede;
     border-top-right-radius: 20px;

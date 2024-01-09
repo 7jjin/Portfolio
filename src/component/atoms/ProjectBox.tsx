@@ -8,12 +8,13 @@ interface Props {
     subContent: string;
     stack: string[];
     onClick: () => void;
+    onMouseEnter: () => void;
 }
 
-const ProjectBox: React.FC<Props> = ({ position, img, name, isGroup, subContent, stack, onClick }) => {
+const ProjectBox: React.FC<Props> = ({ position, img, name, isGroup, subContent, stack, onClick, onMouseEnter }) => {
     return (
         <>
-            <_projectBox className="projcetBox" position={position} onClick={onClick}>
+            <_projectBox className="projcetBox" position={position} onClick={onClick} onMouseEnter={onMouseEnter}>
                 <div className="imgBox">
                     <_img src={img} alt="" />
                 </div>
@@ -56,6 +57,7 @@ const _projectBox = styled.div<{ position: string }>`
     height: 320px;
     background-color: white;
     border-radius: 5px;
+
     &:hover {
         animation: ${(props) => (props.position === 'up' ? popUpTop : popDownTop)} 0.5s
             cubic-bezier(0.25, 0.46, 0.45, 0.94) both;

@@ -11,6 +11,7 @@ export const PROJECT = {
         isGroup: true,
         period: '2023.04.05 ~ 2023.05.06',
         member: 4,
+        progress: 25,
         deployLink: 'https://githob.com/7jjin/SYOS',
         repoLink: 'https://githob.com/7jjin/SYOS',
         subContent:
@@ -37,6 +38,7 @@ export const PROJECT = {
         isGroup: false,
         period: '2023.04.05 ~ 2023.05.06',
         member: 1,
+        progress: 50,
         deployLink: 'https://github.com/7jjin/My-Movie/tree/main/my-react-app',
         repoLink: 'https://github.com/7jjin/My-Movie/tree/main/my-react-app',
         subContent:
@@ -62,6 +64,7 @@ export const PROJECT = {
         isGroup: true,
         period: '2023.04.05 ~ 2023.05.06',
         member: 4,
+        progress: 75,
         deployLink: 'https://doongg.site',
         repoLink: 'https://github.com/DoongG/DoongG-Client',
         subContent:
@@ -88,6 +91,7 @@ export const PROJECT = {
         isGroup: true,
         period: '2023.04.05 ~ 2023.05.06',
         member: 4,
+        progress: 100,
         deployLink: 'https://github.com/7jjin/Portfolio',
         repoLink: 'https://github.com/7jjin/Portfolio',
         subContent:
