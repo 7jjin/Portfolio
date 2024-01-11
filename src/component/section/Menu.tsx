@@ -1,7 +1,13 @@
 import styled from 'styled-components';
 import NavBtn from '../atoms/Button/NavBtn';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { activeNavBtnState, introPageRefState, projectPageRefState, skillPageRefState } from '../../recoil/atoms';
+import {
+    activeNavBtnState,
+    activityPageRefState,
+    introPageRefState,
+    projectPageRefState,
+    skillPageRefState,
+} from '../../recoil/atoms';
 import { useEffect } from 'react';
 
 const Menu = () => {
@@ -9,6 +15,7 @@ const Menu = () => {
     const introPage = useRecoilValue(introPageRefState);
     const projectPage = useRecoilValue(projectPageRefState);
     const skillPage = useRecoilValue(skillPageRefState);
+    const activityPage = useRecoilValue(activityPageRefState);
 
     // Nav버튼 클릭시 스타일 바뀌고 해당 section으로 이동
     const onClickStyle = (buttonName: string) => {
@@ -22,6 +29,9 @@ const Menu = () => {
                 break;
             case 'PROJECT':
                 projectPage && projectPage.scrollIntoView({ behavior: 'smooth' });
+                break;
+            case 'ACTIVITY':
+                activityPage && activityPage.scrollIntoView({ behavior: 'smooth' });
                 break;
         }
     };
@@ -54,12 +64,12 @@ const Menu = () => {
                     PROJECT
                 </NavBtn>
                 <NavBtn
-                    className={'AWARD'}
+                    className={'ACTIVITY'}
                     color={'#4299E1'}
-                    onClick={() => onClickStyle('AWARD')}
-                    active={activeNavBtn === 'AWARD'}
+                    onClick={() => onClickStyle('ACTIVITY')}
+                    active={activeNavBtn === 'ACTIVITY'}
                 >
-                    AWARD
+                    ACTIVITY
                 </NavBtn>
                 <NavBtn
                     className={'BLOG'}

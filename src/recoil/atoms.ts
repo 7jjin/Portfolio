@@ -32,3 +32,7 @@ export const skillPageRefState = atom({
     key: 'skillPageRefState',
     default: null as HTMLDivElement | null,
 });
+export const activityPageRefState = atom({
+    key: 'activityPageRefState',
+    default: null as HTMLDivElement | null,
+});
