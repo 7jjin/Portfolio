@@ -52,7 +52,7 @@ const Intro = () => {
 
     return (
         <>
-            <_introBox id="intro">
+            <_introBox id="introBox">
                 <_mainIntro className="mainIntro">
                     {intro} <br />
                     <span>{name}</span>
@@ -73,7 +73,7 @@ const Intro = () => {
                     </svg>
                 </_slideBox>
             </_introBox>
-            <_darkMode className="darkmode">
+            <_darkMode className="darkmode" onClick={() => console.log('Dark-Mode')}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="57" height="59" viewBox="0 0 57 59" fill="none">
                     <g clip-path="url(#clip0_10_208)">
                         <path

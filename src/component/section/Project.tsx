@@ -45,7 +45,7 @@ const Project = () => {
 
     return (
         <>
-            <_skillBox className="skillBox">
+            <_projectBox id="projectBox">
                 <_wrapper>
                     <_progress max="100" value={progressGauge}></_progress>
                     <_dot position="25%" className="dot">
@@ -103,7 +103,7 @@ const Project = () => {
                         <ProjectModal setModalOn={setModalOn} selectedProject={selectedProject}></ProjectModal>
                     )}
                 </ModalPortal>
-            </_skillBox>
+            </_projectBox>
         </>
     );
 };
@@ -114,10 +114,10 @@ const _wrapper = styled.div`
     width: 100%;
 `;
 
-const _skillBox = styled.section`
+const _projectBox = styled.section`
     position: relative;
     left: 10%;
-    padding-right: 20%;
+    padding-right: 18%;
     width: 90%;
     background-color: #fffede;
     border-top-right-radius: 20px;

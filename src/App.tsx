@@ -74,7 +74,6 @@ function App() {
                 }
             }
         };
-
         const wrapperDivRefCurrent = wrapperDivRef.current;
         if (wrapperDivRefCurrent) {
             wrapperDivRefCurrent.addEventListener('wheel', wheelHandler);

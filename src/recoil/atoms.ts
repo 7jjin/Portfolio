@@ -1,3 +1,4 @@
+import React from 'react';
 import { atom } from 'recoil';
 
 export const activeNavBtnState = atom({
@@ -17,4 +18,17 @@ export const openStackState = atom({
 export const lastOpenStackState = atom({
     key: 'lastOpenStackState',
     default: '',
+});
+
+export const introPageRefState = atom({
+    key: 'introPageRefState',
+    default: null as HTMLDivElement | null,
+});
+export const projectPageRefState = atom({
+    key: 'projectPageRefState',
+    default: null as HTMLDivElement | null,
+});
+export const skillPageRefState = atom({
+    key: 'skillPageRefState',
+    default: null as HTMLDivElement | null,
 });

@@ -29,107 +29,122 @@ interface Props {
 }
 
 const ProjectModal: React.FC<Props> = ({ setModalOn, selectedProject }) => {
-    const temp = [
-        'Teachable Machine을 활용한 머신러닝을 통해 사용자에게 알맞은 책상 분위기를 추천해주는 기능 구현',
-        '이미지 안에 상품 클릭 시 상품 정보를 입력할 수 있는 란을 생성하고 이 좌표를  이미지 크기에 맞게 %로 변환하여 상품 정보와 좌표를 DB에 저장하는 기능 구현',
-        'event.stopPropagation() 메소드를 활용하여 상품 정보란 생성 후 이벤트 버블링 되는 현상을 막는 기능 구현',
-        '제품 정보들을 삭제할 때마다 바뀐 배열의 길이만큼 반복문을 활용해 id값들을 재할당 해주는 기능 구현',
-    ];
-
     return (
         <>
-            <_background className="background">
-                <_wrapper className="wrapper">
-                    <_content className="content">
-                        <_leftBox className="leftBox">
-                            <div className="upBox">
-                                <_swiper
-                                    slidesPerView={1}
-                                    spaceBetween={30}
-                                    loop={true}
-                                    pagination={{
-                                        clickable: true,
-                                    }}
-                                    navigation={true}
-                                    modules={[Pagination, Navigation]}
-                                    className="mySwiper"
-                                >
-                                    <SwiperSlide>
-                                        <_swiperImg src={gif1} alt="" />
-                                    </SwiperSlide>
-                                    <SwiperSlide>
-                                        <_swiperImg src={gif1} alt="" />
-                                    </SwiperSlide>
-                                    <SwiperSlide>
-                                        <_swiperImg src={gif1} alt="" />
-                                    </SwiperSlide>
-                                    <SwiperSlide>
-                                        <_swiperImg src={gif1} alt="" />
-                                    </SwiperSlide>
-                                </_swiper>
-                            </div>
-                            <div className="downBox">
-                                <_titleBox className="titleBox">
-                                    <span>{selectedProject.name}</span>
-                                    {selectedProject.isGroup ? <span>Team project</span> : <span>Solo project</span>}
-                                </_titleBox>
-                                <_periodBox className="periodBox">
-                                    <span>{selectedProject.period}</span>
-                                    <span>({selectedProject.member}명)</span>
-                                </_periodBox>
+            <_backgroundWrapper className="wrapper">
+                <_background className="background">
+                    <_wrapper className="wrapper">
+                        <_content className="content">
+                            <_leftBox className="leftBox">
+                                <div className="upBox">
+                                    <_swiper
+                                        slidesPerView={1}
+                                        spaceBetween={30}
+                                        loop={true}
+                                        pagination={{
+                                            clickable: true,
+                                        }}
+                                        navigation={true}
+                                        modules={[Pagination, Navigation]}
+                                        className="mySwiper"
+                                    >
+                                        <SwiperSlide>
+                                            <_swiperImg src={gif1} alt="" />
+                                        </SwiperSlide>
+                                        <SwiperSlide>
+                                            <_swiperImg src={gif1} alt="" />
+                                        </SwiperSlide>
+                                        <SwiperSlide>
+                                            <_swiperImg src={gif1} alt="" />
+                                        </SwiperSlide>
+                                        <SwiperSlide>
+                                            <_swiperImg src={gif1} alt="" />
+                                        </SwiperSlide>
+                                    </_swiper>
+                                </div>
+                                <div className="downBox">
+                                    <_titleBox className="titleBox">
+                                        <span>{selectedProject.name}</span>
+                                        {selectedProject.isGroup ? (
+                                            <span>Team project</span>
+                                        ) : (
+                                            <span>Solo project</span>
+                                        )}
+                                    </_titleBox>
+                                    <_periodBox className="periodBox">
+                                        <span>{selectedProject.period}</span>
+                                        <span>({selectedProject.member}명)</span>
+                                    </_periodBox>
 
-                                <_deployBox className="deployBox">
-                                    <span>배포 링크</span>
-                                    <a href={selectedProject.deployLink}>{selectedProject.deployLink}</a>
-                                </_deployBox>
-                                <_repoBox className="repoBox">
-                                    <span>리포지토리</span>
-                                    <a href={selectedProject.repoLink}>{selectedProject.repoLink}</a>
-                                </_repoBox>
-                                <_stackBox className="stackBox">
-                                    <span>기술스택</span>
-                                    <div>
-                                        {selectedProject.stack.map((item, index) => (
-                                            <span key={index}>
-                                                {item}
-                                                {index !== selectedProject.stack.length - 1 && ', '}
-                                            </span>
+                                    <_deployBox className="deployBox">
+                                        <span>배포 링크</span>
+                                        <a href={selectedProject.deployLink}>{selectedProject.deployLink}</a>
+                                    </_deployBox>
+                                    <_repoBox className="repoBox">
+                                        <span>리포지토리</span>
+                                        <a href={selectedProject.repoLink}>{selectedProject.repoLink}</a>
+                                    </_repoBox>
+                                    <_stackBox className="stackBox">
+                                        <span>기술스택</span>
+                                        <div>
+                                            {selectedProject.stack.map((item, index) => (
+                                                <span key={index}>
+                                                    {item}
+                                                    {index !== selectedProject.stack.length - 1 && ', '}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </_stackBox>
+                                </div>
+                            </_leftBox>
+                            <_rightBox className="rightBox">
+                                <_introBox className="introBox">
+                                    <span>프로젝트 소개</span>
+                                    {selectedProject.mainContent.map((item) => (
+                                        <p>{item}</p>
+                                    ))}
+                                </_introBox>
+                                <_functionBox className="functionBox">
+                                    <span>구현 기능</span>
+                                    <div className="functionListBox">
+                                        {selectedProject.functionList.map((item) => (
+                                            <_functionList className="functionList">
+                                                <div>
+                                                    <IoMdCheckmark />
+                                                </div>
+                                                <p>{item}</p>
+                                            </_functionList>
                                         ))}
                                     </div>
-                                </_stackBox>
-                            </div>
-                        </_leftBox>
-                        <_rightBox className="rightBox">
-                            <_introBox className="introBox">
-                                <span>프로젝트 소개</span>
-                                {selectedProject.mainContent.map((item) => (
-                                    <p>{item}</p>
-                                ))}
-                            </_introBox>
-                            <_functionBox className="functionBox">
-                                <span>구현 기능</span>
-                                <div className="functionListBox">
-                                    {selectedProject.functionList.map((item) => (
-                                        <_functionList className="functionList">
-                                            <div>
-                                                <IoMdCheckmark />
-                                            </div>
-                                            <p>{item}</p>
-                                        </_functionList>
-                                    ))}
-                                </div>
-                            </_functionBox>
-                        </_rightBox>
-                    </_content>
-                    <_cancelBtn className="cancelBtn">
-                        <VscChromeClose className="button" onClick={() => setModalOn(false)} />
-                    </_cancelBtn>
-                </_wrapper>
-            </_background>
+                                </_functionBox>
+                            </_rightBox>
+                        </_content>
+                        <_cancelBtn className="cancelBtn">
+                            <VscChromeClose className="button" onClick={() => setModalOn(false)} />
+                        </_cancelBtn>
+                    </_wrapper>
+                </_background>
+            </_backgroundWrapper>
         </>
     );
 };
-
+const _backgroundWrapper = styled.div`
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: #0000005e;
+    animation: fadeIn 0.5s forwards;
+    left: 0;
+    top: 0;
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+`;
 const _background = styled.div`
     height: 100%;
     width: 100%;
@@ -141,16 +156,6 @@ const _background = styled.div`
     left: 0;
     top: 0;
     text-align: center;
-    background: #0000005e;
-    animation: fadeIn 0.5s forwards;
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
 `;
 
 const _wrapper = styled.div`
@@ -177,7 +182,7 @@ const _content = styled.div`
     display: flex;
     width: 100%;
     height: 100%;
-    padding: 35px 60px;
+    padding: 3rem 5rem;
 `;
 
 // 왼쪽 부분 스타일링

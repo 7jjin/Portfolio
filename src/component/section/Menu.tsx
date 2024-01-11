@@ -1,19 +1,34 @@
 import styled from 'styled-components';
 import NavBtn from '../atoms/Button/NavBtn';
-import { useRecoilState } from 'recoil';
-import { activeNavBtnState } from '../../recoil/atoms';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { activeNavBtnState, introPageRefState, projectPageRefState, skillPageRefState } from '../../recoil/atoms';
 import { useEffect } from 'react';
 
 const Menu = () => {
     const [activeNavBtn, setActiveNavBtn] = useRecoilState(activeNavBtnState);
-    // Nav버튼 클릭시 해당 버튼만 동작
+    const introPage = useRecoilValue(introPageRefState);
+    const projectPage = useRecoilValue(projectPageRefState);
+    const skillPage = useRecoilValue(skillPageRefState);
+
+    // Nav버튼 클릭시 스타일 바뀌고 해당 section으로 이동
     const onClickStyle = (buttonName: string) => {
         setActiveNavBtn(buttonName);
+        switch (buttonName) {
+            case 'About':
+                introPage && introPage.scrollIntoView({ behavior: 'smooth' });
+                break;
+            case 'SKILL':
+                skillPage && skillPage.scrollIntoView({ behavior: 'smooth' });
+                break;
+            case 'PROJECT':
+                projectPage && projectPage.scrollIntoView({ behavior: 'smooth' });
+                break;
+        }
     };
 
     return (
         <>
-            <_Menu id="menu">
+            <_MenuBox id="menuBox">
                 <NavBtn
                     className={'About'}
                     color={'#FC7A7A'}
@@ -54,12 +69,12 @@ const Menu = () => {
                 >
                     BLOG
                 </NavBtn>
-            </_Menu>
+            </_MenuBox>
         </>
     );
 };
 
-const _Menu = styled.section`
+const _MenuBox = styled.section`
     height: 100%;
     position: fixed;
     display: flex;
