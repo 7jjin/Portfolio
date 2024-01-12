@@ -1,9 +1,19 @@
+import ActivityBox from 'component/atoms/Box/ActivityBox';
+import { BLOG, BOOTCAMP } from 'constant/activity';
 import styled from 'styled-components';
 
 const Activity = () => {
     return (
         <>
-            <_activityBox id="activityBox"></_activityBox>
+            <_activityBox id="activityBox">
+                <_wrapper className="wrapper">
+                    <div className="upBox">
+                        <ActivityBox {...BOOTCAMP} position="left" width="50%" />
+                        <ActivityBox {...BLOG} position="right" width="50%" />
+                    </div>
+                    <div className="downBox"></div>
+                </_wrapper>
+            </_activityBox>
         </>
     );
 };
@@ -19,7 +29,20 @@ const _activityBox = styled.section`
     background-color: #fffede;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
-    padding-bottom: 70px;
+    padding: 4rem 7rem;
+`;
+const _wrapper = styled.div`
+    width: 100%;
+    height: 100%;
+    & > :nth-child(1) {
+        height: 75%;
+        width: 100%;
+        display: flex;
+    }
+    & > :nth-child(2) {
+        height: 25%;
+        width: 100%;
+    }
 `;
 
 export default Activity;

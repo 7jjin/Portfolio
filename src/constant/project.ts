@@ -3,9 +3,11 @@ import doonggImg from 'assets/doongg.png';
 import jinchaImg from 'assets/jincha.png';
 import syosImg from 'assets/syos.png';
 
+// 타입 선언해주기
+
 export const PROJECT = {
     SYOS: {
-        position: 'up',
+        position: 'up', // hr태그보다 위인지 아래인지 구분
         name: 'SYOS',
         img: syosImg,
         isGroup: true,

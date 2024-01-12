@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import ProjectBox from '../atoms/ProjectBox';
+import ProjectBox from '../atoms/Box/ProjectBox';
 import { PROJECT } from '../../constant/project';
 import { useEffect, useState } from 'react';
 import ModalPortal from 'helpers/portal';
