@@ -35,3 +35,14 @@ export const BLOG: ActivityTypes = {
         'TypeScript를 통한 정적언어 사용 경험',
     ],
 };
+
+export const STUDY: ActivityTypes = {
+    position: 'left',
+    subject: 'Study',
+    period: '2022.12.06 ~ 2023.06.05',
+    title: '알고리즘 스터디',
+    content: [
+        'stack,queue등 7개의 알고리즘을 배워 약 100문제 푼 경험이 있습니다.',
+        'stack,queue등 7개의 알고리즘을 배워 약 100문제 푼 경험이 있습니다.',
+    ],
+};

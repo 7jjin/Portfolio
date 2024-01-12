@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
+import '@fontsource/gothic-a1/800.css';
 
 interface NavBtnStyle {
     color: string;
@@ -34,6 +35,7 @@ const _styledBtn = styled.button<NavBtnStyle>`
     border-radius: 10px 0px 0px 10px;
     font-weight: 600;
     & > p {
+        font-weight: 800;
         transform: rotate(-90deg);
     }
 `;

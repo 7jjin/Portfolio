@@ -1,5 +1,5 @@
 import ActivityBox from 'component/atoms/Box/ActivityBox';
-import { BLOG, BOOTCAMP } from 'constant/activity';
+import { BLOG, BOOTCAMP, STUDY } from 'constant/activity';
 import styled from 'styled-components';
 
 const Activity = () => {
@@ -11,7 +11,9 @@ const Activity = () => {
                         <ActivityBox {...BOOTCAMP} position="left" width="50%" />
                         <ActivityBox {...BLOG} position="right" width="50%" />
                     </div>
-                    <div className="downBox"></div>
+                    <div className="downBox">
+                        <ActivityBox {...STUDY} position="left" width="100%" />
+                    </div>
                 </_wrapper>
             </_activityBox>
         </>
@@ -29,19 +31,20 @@ const _activityBox = styled.section`
     background-color: #fffede;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
-    padding: 4rem 7rem;
+    padding: 3rem 7rem;
 `;
 const _wrapper = styled.div`
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
     & > :nth-child(1) {
-        height: 75%;
         width: 100%;
         display: flex;
     }
     & > :nth-child(2) {
-        height: 25%;
         width: 100%;
+        display: flex;
     }
 `;
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import GlobalStyle from './style/GlobalStyles';
+import GlobalFonts from './style/font';
 import IntroPage from './pages/IntroPage';
 import SkillPage from './pages/SkillPage';
 import Menu from './component/section/Menu';
@@ -101,6 +102,7 @@ function App() {
     return (
         <div className="App">
             <GlobalStyle />
+            <GlobalFonts />
             <Menu />
             <_wrapper className="wrapper" ref={wrapperDivRef}>
                 <IntroPage />

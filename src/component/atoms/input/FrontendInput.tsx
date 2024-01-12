@@ -137,7 +137,7 @@ const FrontendInput = () => {
         <>
             <_menuOpen type="checkbox" className="menuOpen" name="menuOpen" id="frontend" onChange={isOpenHandler} />
             <_menuOpenButton className="menuOpenButton" htmlFor="frontend" id="frontendBtn">
-                Frontend{openStack.frontend}
+                FE{openStack.frontend}
                 {openStack.frontend && <SkillModal {...modal} />}
             </_menuOpenButton>
             <_menuItem
@@ -315,6 +315,8 @@ const _menuItem = styled.a`
     }
 `;
 const _menuOpenButton = styled.label`
+    font-family: 'title2', sans-serif;
+    font-size: 20px;
     background: #ff5151;
     border-radius: 100%;
     width: 120px;

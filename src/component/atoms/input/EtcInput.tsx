@@ -133,7 +133,7 @@ const EtcInput = () => {
         <>
             <_menuOpen type="checkbox" className="menuOpen" name="menuOpen" id="etc" onChange={isOpenHandler} />
             <_menuOpenButton className="menuOpenButton" htmlFor="etc" id="etcBtn">
-                Etc
+                ETC
                 {openStack.etc && <SkillModal {...modal} />}
             </_menuOpenButton>
             <_menuItem
@@ -234,6 +234,9 @@ const _menuItem = styled.a`
 `;
 const _menuOpenButton = styled.label`
     background: #00e961;
+    font-family: 'title2', sans-serif;
+    font-size: 20px;
+
     border-radius: 100%;
     width: 120px;
     height: 120px;

@@ -87,6 +87,7 @@ const _subjectBox = styled.div<{ position: string }>`
     transform: translateY(-50%);
     box-shadow: 3px 3px 4px 0px #0000004f;
     & > span {
+        font-family: 'title2', sans-serif;
         font-size: 2.3rem;
         font-weight: 700;
     }

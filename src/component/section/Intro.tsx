@@ -1,5 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
+import '@fontsource/gothic-a1/400.css';
+
 const Intro = () => {
     const introText = '호기심 많은 프론트엔드 개발자';
     const nameText = '조진형';
@@ -92,12 +94,16 @@ const _introBox = styled.section`
 `;
 
 const _mainIntro = styled.p`
+    font-family: 'title2', sans-serif;
+    font-weight: normal;
     font-size: 50px;
     text-align: center;
     line-height: 1.25;
     margin: 50px 0px 100px;
     & > span {
+        font-family: 'title2', sans-serif;
         font-size: 85px;
+        margin-right: 10px;
         background-size: 100% 100%;
         background-image: linear-gradient(transparent 70%, #fc7a7a 30%);
     }
@@ -105,10 +111,11 @@ const _mainIntro = styled.p`
 
 const _subIntro = styled.p`
     font-size: 30px;
+    font-weight: 400;
     margin: 40px 0px;
     text-align: center;
     line-height: 1.25;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 13%);
     animation: none;
     visibility: hidden;
     @keyframes text-focus-in {

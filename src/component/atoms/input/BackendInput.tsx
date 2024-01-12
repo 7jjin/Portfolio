@@ -133,7 +133,7 @@ const BackendInput = () => {
         <>
             <_menuOpen type="checkbox" className="menuOpen" name="menuOpen" id="backend" onChange={isOpenHandler} />
             <_menuOpenButton className="menuOpenButton" htmlFor="backend" id="backendBtn">
-                Backend
+                BE
                 {openStack.backend && <SkillModal {...modal} />}
             </_menuOpenButton>
             <_menuItem
@@ -247,6 +247,8 @@ const _menuItem = styled.a`
 `;
 const _menuOpenButton = styled.label`
     background: #fff80b;
+    font-family: 'title2', sans-serif;
+    font-size: 20px;
     border-radius: 100%;
     width: 120px;
     height: 120px;
