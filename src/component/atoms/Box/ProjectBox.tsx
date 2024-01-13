@@ -53,8 +53,8 @@ const _projectBox = styled.div<{ position: string }>`
     box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.08);
     top: 50%;
     left: 50%;
-    width: 330px;
-    height: 350px;
+    width: 300px;
+    height: 320px;
     background-color: white;
     border-radius: 5px;
 
@@ -95,7 +95,7 @@ const _contentBox = styled.div`
     margin-top: 11px;
 `;
 const _stackBox = styled.div`
-    margin-top: 15px;
+    margin-top: 11px;
     & > .stack {
         font-size: 12px;
         padding: 2px 6px;
@@ -105,7 +105,6 @@ const _stackBox = styled.div`
     }
     & > .stackList {
         display: flex;
-        margin-top: 6px;
     }
     & > .stackList > div {
         font-size: 14px;

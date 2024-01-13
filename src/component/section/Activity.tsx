@@ -31,12 +31,13 @@ const _activityBox = styled.section`
     background-color: #fffede;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
-    padding: 3rem 7rem;
+    padding: 3rem 5rem;
 `;
 const _wrapper = styled.div`
     width: 100%;
     height: 100%;
     display: flex;
+    justify-content: space-evenly;
     flex-direction: column;
     & > :nth-child(1) {
         width: 100%;

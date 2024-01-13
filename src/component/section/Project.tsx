@@ -34,9 +34,11 @@ const Project = () => {
         setSelectedProject(project);
         setModalOn(!modalOn);
     };
-    useEffect(() => {
-        console.log(hoveredProject);
-    }, [hoveredProject]);
+
+    // 필요없는 함수
+    // useEffect(() => {
+    //     console.log(hoveredProject);
+    // }, [hoveredProject]);
 
     // ProjectBox에 호버 시 부모요소의 %를 찾는 함수
     const handleMouseEnter = (progress: number) => {

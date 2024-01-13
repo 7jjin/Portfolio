@@ -16,8 +16,6 @@ export const BOOTCAMP: ActivityTypes = {
         '반응형 웹에 대한 이해 및 개선 경험',
         'React를 사용한 CSR 어플리케이션 구현',
         'Redux, Redux-ToolKit를 통한 전역 상태 관리',
-        'Stlyed-components를 사용한 CSS-in-JS 라이브러리 사용 경험',
-        'TypeScript를 통한 정적언어 사용 경험',
     ],
 };
 
@@ -31,8 +29,6 @@ export const BLOG: ActivityTypes = {
         '반응형 웹에 대한 이해 및 개선 경험',
         'React를 사용한 CSR 어플리케이션 구현',
         'Redux, Redux-ToolKit를 통한 전역 상태 관리',
-        'Stlyed-components를 사용한 CSS-in-JS 라이브러리 사용 경험',
-        'TypeScript를 통한 정적언어 사용 경험',
     ],
 };
 

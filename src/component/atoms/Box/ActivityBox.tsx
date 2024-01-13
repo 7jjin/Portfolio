@@ -4,7 +4,6 @@ import { ActivityTypes } from 'constant/activity';
 
 const ActivityBox: React.FC<ActivityTypes & { position: 'left' | 'right'; width: string }> = (props) => {
     const { position, width } = props;
-    console.log(props);
     return (
         <>
             <_box className="Box" width={width}>

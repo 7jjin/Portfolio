@@ -36,7 +36,7 @@ const _stacakModal = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     width: 720px;
-    height: 240px;
+    height: 190px;
     position: relative;
 `;
 const _modalName = styled.span`
