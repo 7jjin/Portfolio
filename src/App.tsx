@@ -9,6 +9,7 @@ import { useRecoilState } from 'recoil';
 import { activeNavBtnState } from './recoil/atoms';
 import ProjectPage from './pages/ProjectPage';
 import ActivityPage from 'pages/ActivityPage';
+import ContactPage from 'pages/ContactPage';
 function App() {
     const wrapperDivRef = useRef<HTMLDivElement>(null);
     const [activeNavBtn, setActiveNavBtn] = useRecoilState(activeNavBtnState);
@@ -54,7 +55,7 @@ function App() {
                         left: 0,
                         behavior: 'smooth',
                     });
-                    setActiveNavBtn('ACTIVITY');
+                    setActiveNavBtn('CONTACT');
                 }
             } else {
                 // 스크롤 올릴 때
@@ -88,6 +89,13 @@ function App() {
                         behavior: 'smooth',
                     });
                     setActiveNavBtn('PROJECT');
+                } else if (scrollTop >= pageHeight * 4 && scrollTop < pageHeight * 5) {
+                    wrapperDivRef.current!.scrollTo({
+                        top: pageHeight * 3 + DIVIDER_HEIGHT,
+                        left: 0,
+                        behavior: 'smooth',
+                    });
+                    setActiveNavBtn('ACTIVITY');
                 }
             }
         };
@@ -109,6 +117,7 @@ function App() {
                 <SkillPage />
                 <ProjectPage />
                 <ActivityPage />
+                <ContactPage />
             </_wrapper>
         </div>
     );

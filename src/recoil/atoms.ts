@@ -36,3 +36,7 @@ export const activityPageRefState = atom({
     key: 'activityPageRefState',
     default: null as HTMLDivElement | null,
 });
+export const contactPageRefState = atom({
+    key: 'contactPageRefState',
+    default: null as HTMLDivElement | null,
+});

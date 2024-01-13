@@ -4,6 +4,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import {
     activeNavBtnState,
     activityPageRefState,
+    contactPageRefState,
     introPageRefState,
     projectPageRefState,
     skillPageRefState,
@@ -16,6 +17,7 @@ const Menu = () => {
     const projectPage = useRecoilValue(projectPageRefState);
     const skillPage = useRecoilValue(skillPageRefState);
     const activityPage = useRecoilValue(activityPageRefState);
+    const contactPage = useRecoilValue(contactPageRefState);
 
     // Nav버튼 클릭시 스타일 바뀌고 해당 section으로 이동
     const onClickStyle = (buttonName: string) => {
@@ -32,6 +34,9 @@ const Menu = () => {
                 break;
             case 'ACTIVITY':
                 activityPage && activityPage.scrollIntoView({ behavior: 'smooth' });
+                break;
+            case 'CONTACT':
+                contactPage && contactPage.scrollIntoView({ behavior: 'smooth' });
                 break;
         }
     };
@@ -74,10 +79,10 @@ const Menu = () => {
                 <NavBtn
                     className={'BLOG'}
                     color={'#9F7AEA'}
-                    onClick={() => onClickStyle('BLOG')}
-                    active={activeNavBtn === 'BLOG'}
+                    onClick={() => onClickStyle('CONTACT')}
+                    active={activeNavBtn === 'CONTACT'}
                 >
-                    BLOG
+                    CONTACT
                 </NavBtn>
             </_MenuBox>
         </>
