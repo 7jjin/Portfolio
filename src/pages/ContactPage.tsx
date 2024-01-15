@@ -14,7 +14,7 @@ const ContactPage = () => {
     }, [contactPage]);
     return (
         <>
-            <_Wrapper ref={contactPage}>
+            <_Wrapper id="contactPage" ref={contactPage}>
                 <Contact />
             </_Wrapper>
         </>
