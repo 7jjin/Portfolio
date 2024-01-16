@@ -4,7 +4,7 @@ import '@fontsource/gothic-a1/400.css';
 import LinkBtn from 'component/atoms/Button/LinkBtn';
 import { LINK } from 'constant/link';
 import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
+import { FaArrowDownLong } from 'react-icons/fa6';
 
 const Intro = () => {
     const introText = '호기심 많은 프론트엔드 개발자';
@@ -18,8 +18,7 @@ const Intro = () => {
     const slidbox = useRef<HTMLDivElement>(null);
     const container = useRef<HTMLDivElement>(null);
 
-    const [link, setLink] = useState(false);
-
+    // 페이지 렌더링 후 실행되는 애니메이션
     useEffect(() => {
         // intro 부분 타이핑 속도
         const introInterval = setTimeout(() => {
@@ -41,7 +40,7 @@ const Intro = () => {
             }
 
             setCount((prevCount) => prevCount + 1);
-        }, 150);
+        }, 170);
         // 다 실행되고 난 후 interval 삭제
 
         return () => {
@@ -53,8 +52,6 @@ const Intro = () => {
                 slidbox.current
             ) {
                 // 타이핑 완료 후 로직
-                // subIntro.current.style.animation = 'text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both';
-                // slidbox.current.style.animation = 'blink 1s ease-in-out infinite alternate';
                 const tl = gsap.timeline();
                 tl.to('.subIntro', { duration: 1, opacity: 1, delay: 0.5 })
                     .to('.github', {
@@ -64,7 +61,6 @@ const Intro = () => {
                     })
                     .to('.tistory', { duration: 0.5, opacity: 1, top: 0 })
                     .to('.slidebox', { duration: 1, opacity: 1 });
-                // setLink(true);
             }
         };
     }, [count, introText, nameText, endingText]);
@@ -89,14 +85,7 @@ const Intro = () => {
                     ))}
                 </_linkBox>
                 <_slideBox className="slidebox" ref={slidbox}>
-                    <span>좌우 스크롤입니다.</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="540" height="16" viewBox="0 0 540 16" fill="none">
-                        <path
-                            d="M539.707 8.70706C540.098 8.31654 540.098 7.68337 539.707 7.29285L533.343 0.928886C532.953 0.538361 532.319 0.538361 531.929 0.928886C531.538 1.31941 531.538 1.95257 531.929 2.3431L537.586 7.99995L531.929 13.6568C531.538 14.0473 531.538 14.6805 531.929 15.071C532.319 15.4615 532.953 15.4615 533.343 15.071L539.707 8.70706ZM8.74228e-08 9L539 8.99995L539 6.99995L-8.74228e-08 7L8.74228e-08 9Z"
-                            fill="black"
-                            fill-opacity="0.25"
-                        />
-                    </svg>
+                    <FaArrowDownLong />
                 </_slideBox>
             </_introBox>
         </>
@@ -197,9 +186,31 @@ const _slideBox = styled.div`
     /* animation: none; */
     /* visibility: hidden; */
     opacity: 0;
-    & > span,
-    svg {
-        color: rgba(0, 0, 0, 0.25);
+    & > :nth-child(1) {
+        color: grey;
+        animation: text-pop-up-top 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite alternate both;
+        @keyframes text-pop-up-top {
+            0% {
+                transform: translateY(0);
+                transform-origin: 50% 50%;
+                text-shadow: none;
+            }
+            100% {
+                transform: translateY(-25px);
+                transform-origin: 50% 50%;
+                text-shadow:
+                    0 1px 0 #cccccc,
+                    0 2px 0 #cccccc,
+                    0 3px 0 #cccccc,
+                    0 4px 0 #cccccc,
+                    0 5px 0 #cccccc,
+                    0 6px 0 #cccccc,
+                    0 7px 0 #cccccc,
+                    0 8px 0 #cccccc,
+                    0 9px 0 #cccccc,
+                    0 50px 30px rgba(0, 0, 0, 0.3);
+            }
+        }
     }
 
     @keyframes blink {
