@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import '@fontsource/gothic-a1/400.css';
 import LinkBtn from 'component/atoms/Button/LinkBtn';
 import { LINK } from 'constant/link';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 const Intro = () => {
     const introText = '호기심 많은 프론트엔드 개발자';
@@ -14,12 +16,13 @@ const Intro = () => {
     const [count, setCount] = useState<number>(0);
     const subIntro = useRef<HTMLDivElement>(null);
     const slidbox = useRef<HTMLDivElement>(null);
+    const container = useRef<HTMLDivElement>(null);
 
     const [link, setLink] = useState(false);
 
     useEffect(() => {
         // intro 부분 타이핑 속도
-        const introInterval = setInterval(() => {
+        const introInterval = setTimeout(() => {
             if (count < introText.length) {
                 setIntro((prevIntro) => prevIntro + introText[count]);
                 setCount((prevCount) => prevCount + 1);
@@ -27,7 +30,7 @@ const Intro = () => {
         }, 70);
 
         // name,ending 부분 타이핑 속도
-        const nameEndingInterval = setInterval(() => {
+        const nameEndingInterval = setTimeout(() => {
             const nameStartIndex = introText.length + 1;
             const nameEndIndex = nameStartIndex + nameText.length;
 
@@ -50,16 +53,25 @@ const Intro = () => {
                 slidbox.current
             ) {
                 // 타이핑 완료 후 로직
-                subIntro.current.style.animation = 'text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both';
-                slidbox.current.style.animation = 'blink 1s ease-in-out infinite alternate';
-                setLink(true);
+                // subIntro.current.style.animation = 'text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both';
+                // slidbox.current.style.animation = 'blink 1s ease-in-out infinite alternate';
+                const tl = gsap.timeline();
+                tl.to('.subIntro', { duration: 1, opacity: 1, delay: 0.5 })
+                    .to('.github', {
+                        duration: 0.5,
+                        opacity: 1,
+                        top: 0,
+                    })
+                    .to('.tistory', { duration: 0.5, opacity: 1, top: 0 })
+                    .to('.slidebox', { duration: 1, opacity: 1 });
+                // setLink(true);
             }
         };
     }, [count, introText, nameText, endingText]);
 
     return (
         <>
-            <_introBox id="introBox">
+            <_introBox id="introBox" ref={container}>
                 <_mainIntro className="mainIntro">
                     {intro} <br />
                     <span>{name}</span>
@@ -70,12 +82,11 @@ const Intro = () => {
                     <br />더 나은 사용자 경험에 대해 항상 생각합니다.
                 </_subIntro>
                 <_linkBox className="linkBox">
-                    {link &&
-                        LINK.map((item) => (
-                            <>
-                                <LinkBtn className={item.name} {...item}></LinkBtn>
-                            </>
-                        ))}
+                    {LINK.map((item) => (
+                        <>
+                            <LinkBtn className={item.name} {...item}></LinkBtn>
+                        </>
+                    ))}
                 </_linkBox>
                 <_slideBox className="slidebox" ref={slidbox}>
                     <span>좌우 스크롤입니다.</span>
@@ -129,8 +140,9 @@ const _subIntro = styled.p`
     text-align: center;
     line-height: 1.25;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 13%);
-    animation: none;
-    visibility: hidden;
+    /* animation: none; */
+    /* visibility: hidden; */
+    opacity: 0;
     @keyframes text-focus-in {
         0% {
             visibility: hidden;
@@ -149,15 +161,22 @@ const _subIntro = styled.p`
 `;
 
 const _linkBox = styled.div`
+    position: relative;
     display: flex;
     width: 100%;
     justify-content: center;
     min-height: 50px;
     & > :nth-child(1) {
-        animation: opacity 2s 0.2s forwards;
+        left: 50%;
+        top: -40px;
+        transform: translateX(-200%);
+        opacity: 0;
     }
     & > :nth-child(2) {
-        animation: opacity 2s 0.7s forwards;
+        left: 50%;
+        top: -40px;
+        transform: translateX(0%);
+        opacity: 0;
     }
     @keyframes opacity {
         0% {
@@ -175,8 +194,9 @@ const _slideBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    animation: none;
-    visibility: hidden;
+    /* animation: none; */
+    /* visibility: hidden; */
+    opacity: 0;
     & > span,
     svg {
         color: rgba(0, 0, 0, 0.25);

@@ -10,12 +10,14 @@ interface LinkProps {
 const LinkBtn: React.FC<LinkProps & React.HTMLProps<HTMLAnchorElement>> = ({ img, link, name }) => {
     return (
         <>
-            <_styledBtn className={name} href={link} img={img}></_styledBtn>
+            <_styledBtn className={name} href={link} img={img} target="_blank"></_styledBtn>
         </>
     );
 };
 
 const _styledBtn = styled.a<{ img: string }>`
+    position: absolute;
+    top: -35px;
     display: flex;
     align-items: center;
     justify-content: center;
