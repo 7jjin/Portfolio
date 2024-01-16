@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import '@fontsource/gothic-a1/400.css';
+import LinkBtn from 'component/atoms/Button/LinkBtn';
+import { LINK } from 'constant/link';
 
 const Intro = () => {
     const introText = '호기심 많은 프론트엔드 개발자';
@@ -12,6 +14,8 @@ const Intro = () => {
     const [count, setCount] = useState<number>(0);
     const subIntro = useRef<HTMLDivElement>(null);
     const slidbox = useRef<HTMLDivElement>(null);
+
+    const [link, setLink] = useState(false);
 
     useEffect(() => {
         // intro 부분 타이핑 속도
@@ -48,6 +52,7 @@ const Intro = () => {
                 // 타이핑 완료 후 로직
                 subIntro.current.style.animation = 'text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both';
                 slidbox.current.style.animation = 'blink 1s ease-in-out infinite alternate';
+                setLink(true);
             }
         };
     }, [count, introText, nameText, endingText]);
@@ -64,6 +69,14 @@ const Intro = () => {
                     새로운 기술을 사용하는데 재미를 느끼고,
                     <br />더 나은 사용자 경험에 대해 항상 생각합니다.
                 </_subIntro>
+                <_linkBox className="linkBox">
+                    {link &&
+                        LINK.map((item) => (
+                            <>
+                                <LinkBtn className={item.name} {...item}></LinkBtn>
+                            </>
+                        ))}
+                </_linkBox>
                 <_slideBox className="slidebox" ref={slidbox}>
                     <span>좌우 스크롤입니다.</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="540" height="16" viewBox="0 0 540 16" fill="none">
@@ -130,6 +143,27 @@ const _subIntro = styled.p`
 
             -webkit-filter: blur(0px);
             filter: blur(0px);
+            opacity: 1;
+        }
+    }
+`;
+
+const _linkBox = styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    min-height: 50px;
+    & > :nth-child(1) {
+        animation: opacity 2s 0.2s forwards;
+    }
+    & > :nth-child(2) {
+        animation: opacity 2s 0.7s forwards;
+    }
+    @keyframes opacity {
+        0% {
+            opacity: 0;
+        }
+        100% {
             opacity: 1;
         }
     }

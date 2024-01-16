@@ -242,9 +242,9 @@ const _textarea = styled.textarea`
     width: 100%;
     resize: none;
     font-size: 16px;
-    border: none;
     background: none;
-    border-bottom: 2px solid black;
+    border-radius: 5px;
+    border: 2px solid black;
 `;
 
 const _buttonBox = styled.div`
