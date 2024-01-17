@@ -78,15 +78,17 @@ const ProjectModal: React.FC<Props> = ({ setModalOn, selectedProject }) => {
                                         <span>{selectedProject.period}</span>
                                         <span>({selectedProject.member}명)</span>
                                     </_periodBox>
+                                    <_linkBox className="linkBox">
+                                        <_deployBox className="deployBox">
+                                            <span>배포 링크</span>
+                                            <a href={selectedProject.deployLink}>{selectedProject.deployLink}</a>
+                                        </_deployBox>
+                                        <_repoBox className="repoBox">
+                                            <span>리포지토리</span>
+                                            <a href={selectedProject.repoLink}>{selectedProject.repoLink}</a>
+                                        </_repoBox>
+                                    </_linkBox>
 
-                                    <_deployBox className="deployBox">
-                                        <span>배포 링크</span>
-                                        <a href={selectedProject.deployLink}>{selectedProject.deployLink}</a>
-                                    </_deployBox>
-                                    <_repoBox className="repoBox">
-                                        <span>리포지토리</span>
-                                        <a href={selectedProject.repoLink}>{selectedProject.repoLink}</a>
-                                    </_repoBox>
                                     <_stackBox className="stackBox">
                                         <span>기술스택</span>
                                         <div>
@@ -201,8 +203,8 @@ const _wrapper = styled.div`
 
 const _content = styled.div`
     display: flex;
+    flex-direction: column;
     width: 100%;
-    height: 100%;
     padding: 3rem 5rem;
 `;
 
@@ -210,16 +212,14 @@ const _content = styled.div`
 const _leftBox = styled.div`
     display: flex;
     flex-direction: column;
-    width: 45%;
-    height: 100%;
+    align-items: center;
     & > :nth-child(1) {
-        width: 100%;
-        height: 45%;
+        width: 75%;
     }
     & > :nth-child(2) {
         width: 100%;
         height: 55%;
-        padding-top: 40px;
+        padding: 40px 4rem;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -228,11 +228,29 @@ const _leftBox = styled.div`
 const _swiper = styled(Swiper)`
     width: 100%;
     height: 100%;
+    .swiper-slide {
+        padding: 20px 3rem;
+    }
+    .swiper-button-prev {
+        left: 0px;
+        color: rgba(0, 0, 0, 0.784);
+    }
+    .swiper-button-next {
+        right: 0px;
+        color: rgba(0, 0, 0, 0.784);
+    }
+    .swiper-pagination {
+        bottom: 0px;
+        color: rgba(0, 0, 0, 0.784);
+        & > span {
+            background-color: rgba(0, 0, 0, 0.784);
+        }
+    }
 `;
 const _swiperImg = styled.video`
     width: 100%;
     height: 100%;
-    object-fit: initial;
+    object-fit: contain;
 `;
 
 const _titleBox = styled.div`
@@ -254,17 +272,23 @@ const _periodBox = styled.div`
         padding-left: 5px;
     }
 `;
+
+const _linkBox = styled.div`
+    padding-top: 17px;
+    display: flex;
+`;
 const _deployBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding-top: 35px;
+    margin-right: 30px;
     & > :nth-child(1) {
         padding: 5px 7px;
         border-radius: 10px;
         background-color: rgb(204 204 204 / 47%);
     }
     & > :nth-child(2) {
+        text-align: left;
         padding-top: 5px;
         color: #676767;
         font-size: 16px;
@@ -274,13 +298,14 @@ const _repoBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding-top: 15px;
     & > :nth-child(1) {
         padding: 5px 7px;
         border-radius: 10px;
         background-color: rgb(204 204 204 / 47%);
     }
     & > :nth-child(2) {
+        text-align: left;
+
         padding-top: 5px;
         color: #676767;
         font-size: 16px;
@@ -298,6 +323,7 @@ const _stackBox = styled.div`
     }
     & > div {
         padding-top: 5px;
+        text-align: left;
     }
     & > div span {
         color: #676767;
@@ -307,9 +333,8 @@ const _stackBox = styled.div`
 
 // 오른쪽 부분 스타일링
 const _rightBox = styled.div`
-    width: 55%;
     height: 100%;
-    margin-left: 60px;
+    padding: 0px 4rem;
 `;
 const _introBox = styled.div`
     padding-top: 10px;
@@ -333,7 +358,7 @@ const _introBox = styled.div`
     }
 `;
 const _functionBox = styled.div`
-    padding-top: 20px;
+    padding-top: 40px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
