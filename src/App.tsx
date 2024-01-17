@@ -14,6 +14,8 @@ function App() {
     const wrapperDivRef = useRef<HTMLDivElement>(null);
     const [activeNavBtn, setActiveNavBtn] = useRecoilState(activeNavBtnState);
     const DIVIDER_HEIGHT = 1;
+
+    // full-page-scroll 기능
     useEffect(() => {
         const wheelHandler = (e: WheelEvent) => {
             e.preventDefault();

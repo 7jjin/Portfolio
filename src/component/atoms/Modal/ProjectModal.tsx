@@ -6,7 +6,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Pagination, Navigation } from 'swiper/modules';
 import doongg from 'assets/doongg.png';
-import gif1 from 'assets/darkmode.gif';
+import gif1 from 'assets/darkmode.mp4';
 import { IoMdCheckmark } from 'react-icons/io';
 import { VscChromeClose } from 'react-icons/vsc';
 
@@ -29,11 +29,14 @@ interface Props {
 }
 
 const ProjectModal: React.FC<Props> = ({ setModalOn, selectedProject }) => {
+    const closeModal = () => {
+        setModalOn(false);
+    };
     return (
         <>
-            <_backgroundWrapper className="wrapper">
+            <_backgroundWrapper className="wrapper" onClick={closeModal}>
                 <_background className="background">
-                    <_wrapper className="wrapper">
+                    <_wrapper className="wrapper" onClick={(e) => e.stopPropagation()}>
                         <_content className="content">
                             <_leftBox className="leftBox">
                                 <div className="upBox">
@@ -49,16 +52,16 @@ const ProjectModal: React.FC<Props> = ({ setModalOn, selectedProject }) => {
                                         className="mySwiper"
                                     >
                                         <SwiperSlide>
-                                            <_swiperImg src={gif1} alt="" />
+                                            <_swiperImg src={gif1} autoPlay loop />
                                         </SwiperSlide>
                                         <SwiperSlide>
-                                            <_swiperImg src={gif1} alt="" />
+                                            <_swiperImg src={gif1} autoPlay loop />
                                         </SwiperSlide>
                                         <SwiperSlide>
-                                            <_swiperImg src={gif1} alt="" />
+                                            <_swiperImg src={gif1} autoPlay loop />
                                         </SwiperSlide>
                                         <SwiperSlide>
-                                            <_swiperImg src={gif1} alt="" />
+                                            <_swiperImg src={gif1} autoPlay loop />
                                         </SwiperSlide>
                                     </_swiper>
                                 </div>
@@ -176,6 +179,24 @@ const _wrapper = styled.div`
             opacity: 1;
         }
     }
+
+    // 스크롤 커스텀
+    &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        /* border-radius: 10px; */
+        background-color: #f5f5f5;
+    }
+
+    &::-webkit-scrollbar {
+        width: 12px;
+        background-color: #f5f5f5;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        background-color: #555;
+    }
 `;
 
 const _content = styled.div`
@@ -208,7 +229,7 @@ const _swiper = styled(Swiper)`
     width: 100%;
     height: 100%;
 `;
-const _swiperImg = styled.img`
+const _swiperImg = styled.video`
     width: 100%;
     height: 100%;
     object-fit: initial;

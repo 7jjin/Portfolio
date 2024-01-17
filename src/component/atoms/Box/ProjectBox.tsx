@@ -53,7 +53,7 @@ const _projectBox = styled.div<{ position: string }>`
     box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.08);
     top: 50%;
     left: 50%;
-    width: 300px;
+    width: 305px;
     height: 320px;
     background-color: white;
     border-radius: 5px;
