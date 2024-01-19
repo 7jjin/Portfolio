@@ -152,7 +152,7 @@ $ npm run build  // 빌드 방법
 
 |<img src="https://github.com/7jjin/Portfolio/assets/101184549/81f46a76-151d-4f8c-8aad-4c6b0d53e1c8" width="100%" >| <img src="https://github.com/7jjin/Portfolio/assets/101184549/85fe5f0e-c7a4-4d15-baad-8df1e5cd69cc" width="100%"> |
 | ---| --- |
-|- GSAP 라이브러리를 사용해 타임라인 기반의 애니메이션을 구현했습니다.<br/>- setTimeout() 함수를 사용해 타이핑 느낌의 애니메이션 효과를 구현했습니다.||- 옵저버를 이용하여 Skill 섹션이 관측될 때마다 애니메이션이 발동 되도록 하였습니다.
+|- GSAP 라이브러리를 사용해 타임라인 기반의 애니메이션을 구현했습니다.<br/>- setTimeout() 함수를 사용해 타이핑 느낌의 애니메이션 효과를 구현했습니다.||- 옵저버를 이용하여 Skill 섹션이 관측될 때마다 애니메이션이 발동 되도록 하였습니다.|
 
 <br/>
 
