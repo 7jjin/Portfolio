@@ -150,7 +150,7 @@ $ npm run build  // 빌드 방법
 
 ### **1️⃣ 애니메이션 효과**
 
-|<img src="https://github.com/7jjin/Portfolio/assets/101184549/81f46a76-151d-4f8c-8aad-4c6b0d53e1c8" width="1000px"  height="200px">| <img src="https://github.com/7jjin/Portfolio/assets/101184549/85fe5f0e-c7a4-4d15-baad-8df1e5cd69cc" width="1000px" height="200px"> |
+|<img src="https://github.com/7jjin/Portfolio/assets/101184549/81f46a76-151d-4f8c-8aad-4c6b0d53e1c8" width="50%"  height="200px">| <img src="https://github.com/7jjin/Portfolio/assets/101184549/85fe5f0e-c7a4-4d15-baad-8df1e5cd69cc" width="50%" height="200px"> |
 | ---| --- |
 |- GSAP 라이브러리를 사용해 타임라인 기반의 애니메이션을 구현했습니다.<br/>- setTimeout() 함수를 사용해 타이핑 느낌의 애니메이션 효과를 구현했습니다.||- 옵저버를 이용하여 Skill 섹션이 관측될 때마다 애니메이션이 발동 되도록 하였습니다.
 
@@ -175,7 +175,7 @@ $ npm run build  // 빌드 방법
 
 ### **4️⃣ React Portal 기능**
 
-|<img src="https://github.com/7jjin/Portfolio/assets/101184549/2de30568-fdab-4cba-82c3-ef99fa7d0a36" width="100%">|
+|<img width="765" alt="React-Portal2" src="https://github.com/7jjin/Portfolio/assets/101184549/2f42569b-7485-4c54-99ba-a2d5d9673e31">|
 | --- |
 |- 불필요한 렌더링을 없애기 위해 React-Portal을 이용하여 모달을 독립적으로 관리 했습니다.|
 
