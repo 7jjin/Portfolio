@@ -14,7 +14,7 @@ interface isModal {
     isboolean: boolean;
     name: string;
     value: number;
-    content: string;
+    content: string[];
 }
 
 const BackendInput = () => {

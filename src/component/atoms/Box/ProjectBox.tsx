@@ -32,10 +32,10 @@ const ProjectBox: React.FC<Props> = ({ position, img, name, isGroup, subContent,
                     <_stackBox className="stackBox">
                         <div className="stack">Stack</div>
                         <div className="stackList">
-                            {stack.map((item, index) => (
+                            {stack.slice(0, 3).map((item, index) => (
                                 <div key={index}>
                                     {item}
-                                    {index !== stack.length - 1 && ', '}
+                                    {index !== 3 && index !== stack.slice(0, 3).length - 1 ? ', ' : ''}
                                 </div>
                             ))}
                         </div>
