@@ -53,7 +53,7 @@ const Intro = () => {
             ) {
                 // 타이핑 완료 후 로직
                 const tl = gsap.timeline();
-                tl.to('.subIntro', { duration: 1, opacity: 1, delay: 0.5 })
+                tl.to('.subIntro', { duration: 0.7, opacity: 1 })
                     .to('.github', {
                         duration: 0.5,
                         opacity: 1,

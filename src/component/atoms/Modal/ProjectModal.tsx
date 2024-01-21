@@ -4,9 +4,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import { Pagination, Navigation } from 'swiper/modules';
+import { Pagination, Navigation, Autoplay } from 'swiper/modules';
 import doongg from 'assets/doongg.png';
-import gif1 from 'assets/darkmode.mp4';
+import gif1 from 'assets/JinCha_darkmode.mp4';
 import { IoMdCheckmark } from 'react-icons/io';
 import { VscChromeClose } from 'react-icons/vsc';
 
@@ -25,6 +25,7 @@ interface Props {
         mainContent: string[];
         functionList: string[];
         stack: string[];
+        video: string[];
     };
 }
 
@@ -32,6 +33,7 @@ const ProjectModal: React.FC<Props> = ({ setModalOn, selectedProject }) => {
     const closeModal = () => {
         setModalOn(false);
     };
+
     return (
         <>
             <_backgroundWrapper className="wrapper" onClick={closeModal}>
@@ -47,22 +49,22 @@ const ProjectModal: React.FC<Props> = ({ setModalOn, selectedProject }) => {
                                         pagination={{
                                             clickable: true,
                                         }}
+                                        autoplay={{
+                                            delay: 4000,
+                                            disableOnInteraction: false,
+                                            pauseOnMouseEnter: true,
+                                        }}
                                         navigation={true}
-                                        modules={[Pagination, Navigation]}
+                                        modules={[Pagination, Navigation, Autoplay]}
                                         className="mySwiper"
                                     >
-                                        <SwiperSlide>
-                                            <_swiperImg src={gif1} autoPlay loop />
-                                        </SwiperSlide>
-                                        <SwiperSlide>
-                                            <_swiperImg src={gif1} autoPlay loop />
-                                        </SwiperSlide>
-                                        <SwiperSlide>
-                                            <_swiperImg src={gif1} autoPlay loop />
-                                        </SwiperSlide>
-                                        <SwiperSlide>
-                                            <_swiperImg src={gif1} autoPlay loop />
-                                        </SwiperSlide>
+                                        {selectedProject.video.map((item) => (
+                                            <>
+                                                <SwiperSlide key={item}>
+                                                    <_swiperVideo src={item} autoPlay loop muted />
+                                                </SwiperSlide>
+                                            </>
+                                        ))}
                                     </_swiper>
                                 </div>
                                 <div className="downBox">
@@ -81,11 +83,15 @@ const ProjectModal: React.FC<Props> = ({ setModalOn, selectedProject }) => {
                                     <_linkBox className="linkBox">
                                         <_deployBox className="deployBox">
                                             <span>배포 링크</span>
-                                            <a href={selectedProject.deployLink}>{selectedProject.deployLink}</a>
+                                            <a href={selectedProject.deployLink} target="_blank">
+                                                {selectedProject.deployLink}
+                                            </a>
                                         </_deployBox>
                                         <_repoBox className="repoBox">
                                             <span>리포지토리</span>
-                                            <a href={selectedProject.repoLink}>{selectedProject.repoLink}</a>
+                                            <a href={selectedProject.repoLink} target="_blank">
+                                                {selectedProject.repoLink}
+                                            </a>
                                         </_repoBox>
                                     </_linkBox>
 
@@ -247,7 +253,8 @@ const _swiper = styled(Swiper)`
         }
     }
 `;
-const _swiperImg = styled.video`
+const _swiperVideo = styled.video`
+    box-shadow: rgb(85, 85, 85) 0px 0px 5px 2px;
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -341,6 +348,7 @@ const _introBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    word-break: keep-all;
     & > span {
         font-size: 24px;
         font-weight: 600;
@@ -381,6 +389,7 @@ const _functionBox = styled.div`
 `;
 const _functionList = styled.div`
     display: flex;
+    word-break: keep-all;
     & > div {
         font-weight: 700;
         color: red;

@@ -21,6 +21,7 @@ interface Props {
     mainContent: string[];
     functionList: string[];
     stack: string[];
+    video: string[];
 }
 
 const Project = () => {
@@ -34,11 +35,6 @@ const Project = () => {
         setSelectedProject(project);
         setModalOn(!modalOn);
     };
-
-    // 필요없는 함수
-    // useEffect(() => {
-    //     console.log(hoveredProject);
-    // }, [hoveredProject]);
 
     // ProjectBox에 호버 시 부모요소의 %를 찾는 함수
     const handleMouseEnter = (progress: number) => {

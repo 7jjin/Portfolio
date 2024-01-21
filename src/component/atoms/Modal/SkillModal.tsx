@@ -7,7 +7,7 @@ interface Props {
     isboolean: boolean;
     name: string;
     value: number;
-    content: string;
+    content: string[];
 }
 
 const SkillModal: React.FC<Props> = ({ isboolean, name, value, content }) => {
@@ -17,7 +17,11 @@ const SkillModal: React.FC<Props> = ({ isboolean, name, value, content }) => {
         <>
             <_stacakModal>
                 <_modalName className="modalName">{name}</_modalName>
-                <_modalContent className="modalContent">{content}</_modalContent>
+                {content.map((item) => (
+                    <>
+                        <_modalContent className="modalContent">{item}</_modalContent>
+                    </>
+                ))}
             </_stacakModal>
         </>
     );
@@ -27,31 +31,29 @@ const _stacakModal = styled.div`
     background-color: white;
     line-height: initial;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: left;
     box-shadow: rgba(149, 160, 165, 0.2) 0px 8px 24px;
-    padding: 5px 10px;
+    padding: 1rem;
+
     line-height: 0.5;
     top: 360px;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 720px;
-    height: 190px;
     position: relative;
 `;
 const _modalName = styled.span`
-    position: absolute;
     font-size: 1.4rem;
-    top: 10px;
-    left: 10px;
     background-color: rgb(204 204 204 / 47%);
     border-radius: 12px;
     padding: 12px 14px;
+    margin-bottom: 1rem;
 `;
 const _modalContent = styled.span`
-    position: absolute;
+    padding-top: 0.5rem;
     padding-left: 7px;
-    bottom: 7px;
     line-height: 1.25;
     font-size: 1.3rem;
 `;
