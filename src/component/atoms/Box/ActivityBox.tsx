@@ -39,11 +39,12 @@ const ActivityBox: React.FC<ActivityTypes & { position: 'left' | 'right'; width:
 
 const _box = styled.div<{ width: string }>`
     position: relative;
+    color: white;
     padding: 2rem;
     margin: 2rem;
     width: ${(props) => props.width};
     border-radius: 15px;
-    background-color: #d9d9d9;
+    background-color: rgb(74, 85, 104);
 `;
 
 const _titleBox = styled.div<{ position: string }>`
@@ -67,6 +68,7 @@ const _li = styled.li`
     margin-top: 16px;
     & > * {
         font-size: 1.3rem;
+        line-height: 1.3;
     }
     & > div {
         color: #4299e1;
@@ -89,6 +91,7 @@ const _subjectBox = styled.div<{ position: string }>`
         font-family: 'title2', sans-serif;
         font-size: 2.3rem;
         font-weight: 700;
+        color: black;
     }
 `;
 export default ActivityBox;
