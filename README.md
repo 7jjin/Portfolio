@@ -19,7 +19,7 @@
 
 ### **배포 링크**
 
-🔖url : [https://www.mymovieapp.store](https://www.mymovieapp.store/)   
+🔖url : [https://poiemaweb.com](https://poiemaweb.com)   
 
 
 ### **기술 스택**
