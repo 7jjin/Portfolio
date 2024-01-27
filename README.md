@@ -19,7 +19,7 @@
 
 ### **배포 링크**
 
-🔖url : [https://poiemaweb.com](https://poiemaweb.com)   
+🔖url : [https://www.jin-hyeong.com](https://www.jin-hyeong.com)   
 
 
 ### **기술 스택**
