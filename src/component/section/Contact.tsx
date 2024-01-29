@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import emailjs from '@emailjs/browser';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AiOutlineArrowRight } from 'react-icons/ai';
-import { useForm, SubmitHandler, FieldErrors } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { Alert } from 'antd';
 
 interface Inputs {
@@ -35,18 +35,14 @@ const Contact = () => {
     }, [isMailSent, isMailFailed]);
 
     // 폼 전송 성공 시
-    const onValid: SubmitHandler<Inputs> = async () => {
-        try {
-            await sendEmail();
-            setIsMailSent(true);
-            reset();
-        } catch (error) {
-            console.log('폼전송 실패', error);
-        }
+    const onValid: SubmitHandler<Inputs> = () => {
+        sendEmail();
+        setIsMailSent(true);
+        reset();
     };
 
     // 폼 전송 실패 시
-    const onInvalid = (errors: FieldErrors) => {
+    const onInvalid = () => {
         setIsMailFailed(true);
     };
 
@@ -56,7 +52,6 @@ const Contact = () => {
             emailjs.sendForm('service_61vguni', 'template_nyjjsdt', form.current, process.env.REACT_APP_API_KEY).then(
                 (result) => {
                     console.log(result.text);
-                    reset();
                 },
                 (error) => {
                     console.log(error.text);

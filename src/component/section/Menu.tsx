@@ -9,7 +9,6 @@ import {
     projectPageRefState,
     skillPageRefState,
 } from '../../recoil/atoms';
-import { useEffect } from 'react';
 
 const Menu = () => {
     const [activeNavBtn, setActiveNavBtn] = useRecoilState(activeNavBtnState);

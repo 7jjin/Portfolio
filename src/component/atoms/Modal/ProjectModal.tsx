@@ -1,12 +1,11 @@
 import styled from 'styled-components';
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Pagination, Navigation, Autoplay } from 'swiper/modules';
-import doongg from 'assets/doongg.png';
-import gif1 from 'assets/JinCha_darkmode.mp4';
+
 import { IoMdCheckmark } from 'react-icons/io';
 import { VscChromeClose } from 'react-icons/vsc';
 

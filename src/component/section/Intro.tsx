@@ -51,7 +51,7 @@ const Intro = () => {
                 subIntro.current &&
                 slidbox.current
             ) {
-                // 타이핑 완료 후 로직
+                // 타이핑 완료 후 로직 (차례대로 깃허브 링크와 티스토리 링크 나타나게 함)
                 const tl = gsap.timeline();
                 tl.to('.subIntro', { duration: 0.7, opacity: 1 })
                     .to('.github', {

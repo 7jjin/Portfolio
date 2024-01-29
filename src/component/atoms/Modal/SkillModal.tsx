@@ -1,7 +1,4 @@
-import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
-import { openStackState } from '../../../recoil/atoms';
-import { useEffect } from 'react';
 
 interface Props {
     isboolean: boolean;
@@ -10,9 +7,7 @@ interface Props {
     content: string[];
 }
 
-const SkillModal: React.FC<Props> = ({ isboolean, name, value, content }) => {
-    const [openStack] = useRecoilState(openStackState);
-
+const SkillModal: React.FC<Props> = ({ name, content }) => {
     return (
         <>
             <_stacakModal>

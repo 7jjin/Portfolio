@@ -38,6 +38,6 @@ export const STUDY: ActivityTypes = {
     title: '알고리즘 스터디',
     content: [
         '백준 및 프로그래머스의 알고리즘 문제를 일주일에 약 6문제를 풀고 서로 어떻게 풀었는지 대화하며 공유',
-        'stack,queue등 7개의 알고리즘을 배워 약 100문제 푼 경험이 있습니다.',
+        'stack,queue등 7개의 알고리즘을 배워 약 100문제 푼 경험',
     ],
 };

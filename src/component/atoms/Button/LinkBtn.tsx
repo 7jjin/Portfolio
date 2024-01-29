@@ -1,4 +1,3 @@
-import { ReactElement, ReactNode } from 'react';
 import styled from 'styled-components';
 
 interface LinkProps {
@@ -31,7 +30,7 @@ const _styledBtn = styled.a<{ img: string }>`
     border: none;
     cursor: pointer;
     background-image: url(${(props) => props.img});
-    background-size: cover; // 이미지 크기 조절 방식
+    background-size: cover;
 `;
 
 export default LinkBtn;

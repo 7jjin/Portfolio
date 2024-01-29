@@ -16,7 +16,7 @@ const ProjectBox: React.FC<Props> = ({ position, img, name, isGroup, subContent,
         <>
             <_projectBox className="projcetBox" position={position} onClick={onClick} onMouseEnter={onMouseEnter}>
                 <div className="imgBox">
-                    <_img src={img} alt="" />
+                    <_img src={img} alt={name} />
                 </div>
                 <_infoBox className="infoBox">
                     <_nameBox className="nameBox">

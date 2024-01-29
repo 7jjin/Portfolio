@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import ProjectBox from '../atoms/Box/ProjectBox';
 import { PROJECT } from '../../constant/project';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ModalPortal from 'helpers/portal';
 import ProjectModal from 'component/atoms/Modal/ProjectModal';
 
@@ -27,7 +27,6 @@ interface Props {
 const Project = () => {
     const [selectedProject, setSelectedProject] = useState<Props | null>(null);
     const [modalOn, setModalOn] = useState(false);
-    const [hoveredProject, setHoveredProject] = useState<string | null>(null);
     const [progressGauge, setProgressGauge] = useState(25);
 
     // Project Modal에 props 전달 Handler

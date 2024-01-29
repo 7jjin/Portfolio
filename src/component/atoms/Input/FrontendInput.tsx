@@ -150,14 +150,6 @@ const FrontendInput = () => {
                         content: FRONTEND[0].content,
                     })
                 }
-                // onMouseLeave={() =>
-                //     handleModal({
-                //         isboolean: false,
-                //         stack: '',
-                //         value: 0,
-                //         content: '',
-                //     })
-                // }
             >
                 <img src={reactImg} alt="React" />
             </_menuItem>
@@ -171,14 +163,6 @@ const FrontendInput = () => {
                         content: FRONTEND[1].content,
                     })
                 }
-                // onMouseLeave={() =>
-                //     handleModal({
-                //         isboolean: false,
-                //         stack: '',
-                //         value: 0,
-                //         content: '',
-                //     })
-                // }
             >
                 <img src={typescriptImg} alt="TypeScript" />
             </_menuItem>
@@ -192,14 +176,6 @@ const FrontendInput = () => {
                         content: FRONTEND[2].content,
                     })
                 }
-                // onMouseLeave={() =>
-                //     handleModal({
-                //         isboolean: false,
-                //         stack: '',
-                //         value: 0,
-                //         content: '',
-                //     })
-                // }
             >
                 <img src={reduxToolkitImg} alt="ReduxTollkit" />
             </_menuItem>
@@ -213,14 +189,6 @@ const FrontendInput = () => {
                         content: FRONTEND[3].content,
                     })
                 }
-                // onMouseLeave={() =>
-                //     handleModal({
-                //         isboolean: false,
-                //         stack: '',
-                //         value: 0,
-                //         content: '',
-                //     })
-                // }
             >
                 <img src={recoilImg} alt="Recoil" />
             </_menuItem>
@@ -234,14 +202,6 @@ const FrontendInput = () => {
                         content: FRONTEND[4].content,
                     })
                 }
-                // onMouseLeave={() =>
-                //     handleModal({
-                //         isboolean: false,
-                //         stack: '',
-                //         value: 0,
-                //         content: '',
-                //     })
-                // }
             >
                 <img src={zustandImg} alt="Zustand" />
             </_menuItem>
@@ -255,14 +215,6 @@ const FrontendInput = () => {
                         content: FRONTEND[5].content,
                     })
                 }
-                // onMouseLeave={() =>
-                //     handleModal({
-                //         isboolean: false,
-                //         stack: '',
-                //         value: 0,
-                //         content: '',
-                //     })
-                // }
             >
                 <img src={styledComponentImg} alt="StyledComponent" />
             </_menuItem>
