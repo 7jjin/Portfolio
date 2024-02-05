@@ -3,14 +3,14 @@ import FrontendInput from '../atoms/Input/FrontendInput';
 import BackendInput from '../atoms/Input/BackendInput';
 import EtcInput from '../atoms/Input/EtcInput';
 import { useInView } from 'react-intersection-observer';
-import { useEffect } from 'react';
-import { lastOpenStackState, openStackState } from '../../recoil/atoms';
+import { useEffect, useState } from 'react';
+import { openStackState } from '../../recoil/atoms';
 import { useRecoilState, useResetRecoilState } from 'recoil';
 
 const Skill = () => {
     const [openStack, setOpenStack] = useRecoilState(openStackState);
     const resetStack = useResetRecoilState(openStackState);
-    const [lastOpenStack, setLastOpenStack] = useRecoilState(lastOpenStackState);
+    const [lastOpenStack, setLastOpenStack] = useState('');
     // 스택 오픈 옵저버
     const { ref, inView } = useInView({ threshold: 0.35, delay: 500, trackVisibility: true });
 

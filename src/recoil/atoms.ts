@@ -16,12 +16,6 @@ export const openStackState = atom({
     },
 });
 
-// 마지막에 열렸던 스택
-export const lastOpenStackState = atom({
-    key: 'lastOpenStackState',
-    default: '',
-});
-
 // navbar-button 클릭 시 해당 영역으로 이동
 export const introPageRefState = atom({
     key: 'introPageRefState',
