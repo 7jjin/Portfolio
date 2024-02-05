@@ -1,7 +1,7 @@
-import portfoiloImg from 'assets/portfoilo-main.png';
-import doonggImg from 'assets/doongg.png';
-import jinchaImg from 'assets/jincha.png';
-import syosImg from 'assets/syos.png';
+import portfoiloImg from 'assets/portfoilo-main.webp';
+import doonggImg from 'assets/doongg.webp';
+import jinchaImg from 'assets/jincha.webp';
+import syosImg from 'assets/syos.webp';
 
 // JinCha 동영상
 import darkmode_JC from 'assets/JinCha/JinCha_darkmode.mp4';

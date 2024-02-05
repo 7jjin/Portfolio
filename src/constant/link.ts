@@ -1,5 +1,5 @@
-import githubImg from 'assets/github.png';
-import tistoryImg from 'assets/tistory.png';
+import githubImg from 'assets/github.webp';
+import tistoryImg from 'assets/tistory.webp';
 
 interface Link {
     name: string;
