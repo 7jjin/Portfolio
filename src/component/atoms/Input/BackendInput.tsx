@@ -205,7 +205,7 @@ const BackendInput = () => {
     );
 };
 
-const _menuItem = styled.a`
+const _menuItem = styled.div`
     background: #fff80b;
     border-radius: 100%;
     width: 120px;

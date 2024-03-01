@@ -192,7 +192,7 @@ const EtcInput = () => {
     );
 };
 
-const _menuItem = styled.a`
+const _menuItem = styled.div`
     border-radius: 100%;
     width: 120px;
     height: 120px;
